@@ -1,5 +1,10 @@
 import { useCalendarContext } from "./../../containers/calendar/calendar_context";
 
 export const useGridCell = () => {
-  return {};
+  const { setCalendarState, activeDate } = useCalendarContext();
+
+  return {
+    setCalendarState,
+    activeDate,
+  };
 };
