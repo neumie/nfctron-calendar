@@ -1,6 +1,7 @@
 import { GridCellUI } from "./grid_cell_ui";
 import { useGridCell } from "./grid_cell_hook";
 import { useTheme } from "@mui/material/styles";
+import React from "react";
 
 export type GridCellProps = {
   date: Date;
@@ -19,8 +20,11 @@ export const GridCell = ({ date }: GridCellProps) => {
     month = date.toLocaleString("default", { month: "short" });
   }
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent) => {
     setCalendarState({ activeDate: date });
+    if (event.detail === 2) {
+      //Do something on double click
+    }
   };
 
   return (
