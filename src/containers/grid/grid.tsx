@@ -1,19 +1,20 @@
-import React from "react";
+import { GridViews } from "../calendar/calendar_context";
+import { useGrid } from "./grid_hook";
+import { MonthGrid } from "./month_grid/month_grid";
+import { WeekGrid } from "./week_grid/week_grid";
 
-import { WeekGrid } from "../../containers/grid/week_grid";
-import { MonthGrid } from "../../containers/grid/month_grid";
-import { Box, SxProps, Theme } from "@mui/material";
+export const Grid = () => {
+  const { activeGridView } = useGrid();
 
-type GridProps = {
-  sx?: SxProps<Theme>;
-};
-
-export const Grid = ({ sx }: GridProps) => {
-  return (
-    <Box
-      sx={[
-        ...(Array.isArray(sx) ? sx : [sx]), //Can't spread directly, because SxProps can be an array
-      ]}
-    ></Box>
-  );
+  switch (activeGridView) {
+    case GridViews.WEEK: {
+      return <WeekGrid />;
+    }
+    case GridViews.MONTH: {
+      return <MonthGrid />;
+    }
+    default: {
+      throw new Error("Unreachable error");
+    }
+  }
 };
