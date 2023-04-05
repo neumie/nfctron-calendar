@@ -1,6 +1,6 @@
-import { MonthSelector } from "../../components/month_selector/month_selector";
-import { ViewSelector } from "../../components/view_selector/view_selector";
 import { Box } from "@mui/material";
+import { DateSelector } from "../../components/date_selector/date_selector";
+import { ViewSelector } from "../../components/view_selector/view_selector";
 import { TodayButton } from "../../components/today_button/today_button";
 
 export const HeaderUI = () => {
@@ -16,7 +16,7 @@ export const HeaderUI = () => {
       }}
     >
       <TodayButton />
-      <MonthSelector />
+      <DateSelector />
       <ViewSelector />
     </Box>
   );
