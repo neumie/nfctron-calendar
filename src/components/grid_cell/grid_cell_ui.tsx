@@ -1,5 +1,6 @@
 import { Theme, alpha } from "@mui/material";
 import { Box } from "@mui/material";
+import React from "react";
 
 export type GridCellUIProps = {
   today: boolean;
@@ -7,7 +8,7 @@ export type GridCellUIProps = {
   day: number;
   month?: string;
   theme: Theme;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
 };
 
 export const GridCellUI = ({
@@ -20,7 +21,7 @@ export const GridCellUI = ({
 }: GridCellUIProps) => {
   return (
     <Box
-      onClick={() => onClick()}
+      onClick={onClick}
       sx={[
         {
           padding: "0.25em",
