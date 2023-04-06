@@ -4,7 +4,7 @@ import {
   LocalizationProvider,
   TimePicker,
 } from "@mui/x-date-pickers";
-import { TwitterPicker as ColorPicker, TwitterPickerProps } from "react-color";
+import { TwitterPicker as ColorPicker } from "react-color";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
 import React from "react";
