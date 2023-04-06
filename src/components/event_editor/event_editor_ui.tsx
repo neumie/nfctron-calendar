@@ -1,4 +1,5 @@
-import { Box, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
+import { Add as AddIcon } from "@mui/icons-material/";
 import {
   DatePicker,
   LocalizationProvider,
@@ -11,13 +12,14 @@ import React from "react";
 import { ColorResult } from "react-color";
 
 export type EventEditorUIProps = {
+  onEventAdd: () => void;
   eventTitle: string;
   onEventTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  eventFromDayjs: Dayjs;
+  eventFromDateDayjs: Dayjs;
   onEventFromChange: (newEventFrom: Dayjs | null) => void;
   eventFromTimeDayjs: Dayjs;
   onEventFromTimeChange: (newEventFromTime: Dayjs | null) => void;
-  eventToDayjs: Dayjs;
+  eventToDateDayjs: Dayjs;
   onEventToChange: (newEventTo: Dayjs | null) => void;
   eventToTimeDayjs: Dayjs;
   onEventToTimeChange: (newEventToTime: Dayjs | null) => void;
@@ -26,13 +28,14 @@ export type EventEditorUIProps = {
 };
 
 export const EventEditorUI = ({
+  onEventAdd,
   eventTitle,
   onEventTitleChange,
-  eventFromDayjs,
+  eventFromDateDayjs,
   onEventFromChange,
   eventFromTimeDayjs,
   onEventFromTimeChange,
-  eventToDayjs,
+  eventToDateDayjs,
   onEventToChange,
   eventToTimeDayjs,
   onEventToTimeChange,
@@ -54,16 +57,33 @@ export const EventEditorUI = ({
         gap: 1,
       }}
     >
-      <TextField
+      <Box
         sx={{
-          width: "200px",
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
         }}
-        id="title"
-        label="event name"
-        variant="standard"
-        value={eventTitle}
-        onChange={onEventTitleChange}
-      />
+      >
+        <TextField
+          sx={{
+            width: "200px",
+          }}
+          id="title"
+          label="event name"
+          variant="standard"
+          value={eventTitle}
+          onChange={onEventTitleChange}
+        />
+        <IconButton
+          sx={{
+            marginTop: 1.5,
+          }}
+          onClick={onEventAdd}
+          aria-label="add event"
+        >
+          <AddIcon />
+        </IconButton>
+      </Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Box
           sx={{
@@ -74,7 +94,7 @@ export const EventEditorUI = ({
           <DatePicker
             sx={datePickerStyle}
             label="From"
-            value={eventFromDayjs}
+            value={eventFromDateDayjs}
             onChange={onEventFromChange}
           />
           <TimePicker
@@ -93,7 +113,7 @@ export const EventEditorUI = ({
           <DatePicker
             sx={datePickerStyle}
             label="To"
-            value={eventToDayjs}
+            value={eventToDateDayjs}
             onChange={onEventToChange}
           />
           <TimePicker

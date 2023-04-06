@@ -9,12 +9,46 @@ export const useEventEditor = () => {
     activeDate,
     eventTitle,
     eventEditorLock,
-    eventFrom,
+    eventFromDate,
     eventFromTime,
-    eventTo,
+    eventToDate,
     eventToTime,
     eventColor,
   } = useCalendarContext();
+
+  const handleEventAdd = () => {
+    //Make the Event object
+    const eventFrom = combineDates(eventFromDate, eventFromTime);
+    const eventTo = combineDates(eventToDate, eventToTime);
+    const newEvent = {
+      title: eventTitle,
+      from: eventFrom,
+      to: eventTo,
+      color: eventColor,
+    };
+
+    //Push the Event object to localStorage
+    const prevLocalStorage = localStorage.getItem("events");
+    if (prevLocalStorage) {
+      const prevEvents = JSON.parse(prevLocalStorage);
+      console.log(prevEvents);
+      prevEvents.push(newEvent);
+      localStorage.setItem("events", JSON.stringify(prevEvents));
+    } else {
+      localStorage.setItem("events", JSON.stringify([newEvent]));
+    }
+
+    //Reset all event things
+    setCalendarState({
+      eventEditorLock: false,
+      eventTitle: "",
+      eventFromDate: activeDate,
+      eventFromTime: activeDate,
+      eventToDate: activeDate,
+      eventToTime: activeDate,
+      eventColor: "",
+    });
+  };
 
   const handleEventTitleChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -22,9 +56,10 @@ export const useEventEditor = () => {
     setCalendarState({ eventTitle: event.target.value });
   };
 
-  const handleEventFromChange = (newEventFrom: Dayjs | null) => {
+  const handleEventFromChange = (newEventFromDate: Dayjs | null) => {
     setCalendarState({ eventEditorLock: true });
-    newEventFrom && setCalendarState({ eventFrom: newEventFrom.toDate() });
+    newEventFromDate &&
+      setCalendarState({ eventFromDate: newEventFromDate.toDate() });
   };
 
   const handleEventFromTimeChange = (newEventFromTime: Dayjs | null) => {
@@ -32,9 +67,10 @@ export const useEventEditor = () => {
       setCalendarState({ eventFromTime: newEventFromTime.toDate() });
   };
 
-  const handleEventToChange = (newEventTo: Dayjs | null) => {
+  const handleEventToChange = (newEventToDate: Dayjs | null) => {
     setCalendarState({ eventEditorLock: true });
-    newEventTo && setCalendarState({ eventTo: newEventTo.toDate() });
+    newEventToDate &&
+      setCalendarState({ eventToDate: newEventToDate.toDate() });
   };
 
   const handleEventToTimeChange = (newEventToTime: Dayjs | null) => {
@@ -48,25 +84,34 @@ export const useEventEditor = () => {
 
   useEffect(() => {
     if (!eventEditorLock) {
-      setCalendarState({ eventFrom: new Date(activeDate.getTime()) });
-      setCalendarState({ eventTo: new Date(activeDate.getTime()) });
+      setCalendarState({ eventFromDate: new Date(activeDate.getTime()) });
+      setCalendarState({ eventToDate: new Date(activeDate.getTime()) });
     }
   }, [activeDate]);
 
   return {
-    setCalendarState,
-    activeDate,
+    handleEventAdd,
     eventTitle,
     handleEventTitleChange,
-    eventFrom,
+    eventFromDate,
     handleEventFromChange,
     eventFromTime,
     handleEventFromTimeChange,
-    eventTo,
+    eventToDate,
     handleEventToChange,
     eventToTime,
     handleEventToTimeChange,
     eventColor,
     handleEventColorChange,
   };
+};
+
+const combineDates = (date1: Date, date2: Date): Date => {
+  const year = date1.getFullYear();
+  const month = date1.getMonth();
+  const day = date1.getDate();
+  const hours = date2.getHours();
+  const minutes = date2.getMinutes();
+
+  return new Date(year, month, day, hours, minutes);
 };

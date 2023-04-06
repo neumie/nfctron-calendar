@@ -14,9 +14,9 @@ export type CalendarState = {
   activeDate: Date;
   eventEditorLock: boolean;
   eventTitle: string;
-  eventFrom: Date;
+  eventFromDate: Date;
   eventFromTime: Date;
-  eventTo: Date;
+  eventToDate: Date;
   eventToTime: Date;
   eventColor: string;
 };
@@ -28,9 +28,9 @@ const defaultState: CalendarState = {
   activeDate: defaultDate,
   eventEditorLock: false,
   eventTitle: "",
-  eventFrom: defaultDate,
+  eventFromDate: defaultDate,
   eventFromTime: defaultDate,
-  eventTo: defaultDate,
+  eventToDate: defaultDate,
   eventToTime: defaultDate,
   eventColor: "",
 };

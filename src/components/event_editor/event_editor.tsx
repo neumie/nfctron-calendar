@@ -4,33 +4,35 @@ import dayjs from "dayjs";
 
 export const EventEditor = () => {
   const {
+    handleEventAdd,
     eventTitle,
     handleEventTitleChange,
-    eventFrom,
+    eventFromDate,
     handleEventFromChange,
     eventFromTime,
     handleEventFromTimeChange,
-    eventTo,
+    eventToDate,
     handleEventToChange,
     eventToTime,
     handleEventToTimeChange,
     eventColor,
     handleEventColorChange,
   } = useEventEditor();
-  const eventFromDayjs = dayjs(eventFrom);
+  const eventFromDateDayjs = dayjs(eventFromDate);
   const eventFromTimeDayjs = dayjs(eventFromTime);
-  const eventToDayjs = dayjs(eventTo);
+  const eventToDateDayjs = dayjs(eventToDate);
   const eventToTimeDayjs = dayjs(eventToTime);
 
   return (
     <EventEditorUI
+      onEventAdd={handleEventAdd}
       eventTitle={eventTitle}
       onEventTitleChange={handleEventTitleChange}
-      eventFromDayjs={eventFromDayjs}
+      eventFromDateDayjs={eventFromDateDayjs}
       onEventFromChange={handleEventFromChange}
       eventFromTimeDayjs={eventFromTimeDayjs}
       onEventFromTimeChange={handleEventFromTimeChange}
-      eventToDayjs={eventToDayjs}
+      eventToDateDayjs={eventToDateDayjs}
       onEventToChange={handleEventToChange}
       eventToTimeDayjs={eventToTimeDayjs}
       onEventToTimeChange={handleEventToTimeChange}
