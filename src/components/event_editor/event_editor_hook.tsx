@@ -31,7 +31,6 @@ export const useEventEditor = () => {
     const prevLocalStorage = localStorage.getItem("events");
     if (prevLocalStorage) {
       const prevEvents = JSON.parse(prevLocalStorage);
-      console.log(prevEvents);
       prevEvents.push(newEvent);
       localStorage.setItem("events", JSON.stringify(prevEvents));
     } else {
