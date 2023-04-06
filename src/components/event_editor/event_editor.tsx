@@ -4,8 +4,6 @@ import dayjs from "dayjs";
 
 export const EventEditor = () => {
   const {
-    setCalendarState,
-    activeDate,
     eventTitle,
     handleEventTitleChange,
     eventFrom,
