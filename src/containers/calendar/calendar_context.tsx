@@ -12,12 +12,27 @@ export type CalendarState = {
   ) => void;
   activeGridView: GridViews;
   activeDate: Date;
+  eventEditorLock: boolean;
+  eventTitle: string;
+  eventFrom: Date;
+  eventFromTime: Date;
+  eventTo: Date;
+  eventToTime: Date;
+  eventColor: string;
 };
 
+const defaultDate = new Date();
 const defaultState: CalendarState = {
   setCalendarState: () => {},
   activeGridView: GridViews.MONTH,
-  activeDate: new Date(),
+  activeDate: defaultDate,
+  eventEditorLock: false,
+  eventTitle: "",
+  eventFrom: defaultDate,
+  eventFromTime: defaultDate,
+  eventTo: defaultDate,
+  eventToTime: defaultDate,
+  eventColor: "",
 };
 
 export const CalendarContext: Context<CalendarState> =
