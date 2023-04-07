@@ -1,5 +1,8 @@
 import type { Dayjs } from "dayjs";
-import { useCalendarContext } from "./../../containers/calendar/calendar_context";
+import {
+  Event,
+  useCalendarContext,
+} from "./../../containers/calendar/calendar_context";
 import React, { useEffect } from "react";
 import { ColorResult } from "react-color";
 
@@ -20,7 +23,7 @@ export const useEventEditor = () => {
     //Make the Event object
     const eventFrom = combineDates(eventFromDate, eventFromTime);
     const eventTo = combineDates(eventToDate, eventToTime);
-    const newEvent = {
+    const newEvent: Event = {
       title: eventTitle,
       from: eventFrom,
       to: eventTo,

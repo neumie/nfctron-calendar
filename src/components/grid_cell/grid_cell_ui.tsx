@@ -9,6 +9,7 @@ export type GridCellUIProps = {
   month?: string;
   theme: Theme;
   onClick: (event: React.MouseEvent) => void;
+  events: React.ReactNode;
 };
 
 export const GridCellUI = ({
@@ -18,6 +19,7 @@ export const GridCellUI = ({
   month,
   theme,
   onClick,
+  events,
 }: GridCellUIProps) => {
   return (
     <Box
@@ -38,6 +40,7 @@ export const GridCellUI = ({
       ]}
     >
       {month} {day}
+      {events}
     </Box>
   );
 };

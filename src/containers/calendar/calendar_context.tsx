@@ -6,6 +6,13 @@ export enum GridViews {
   WEEK = "WEEK",
 }
 
+export type Event = {
+  title: string;
+  from: Date;
+  to: Date;
+  color: string;
+};
+
 export type CalendarState = {
   readonly setCalendarState: (
     state: Partial<Omit<CalendarState, "setCalendarState">>
