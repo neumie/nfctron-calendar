@@ -3,6 +3,7 @@ import { useGridCell } from "./grid_cell_hook";
 import { useTheme } from "@mui/material/styles";
 import type { Event } from "./../../containers/calendar/calendar_context";
 import { GridCellEvent } from "./grid_cell_event/grid_cell_event";
+import { getEvents, datesAreSameDay } from "../../utils/utils";
 
 export type GridCellProps = {
   date: Date;
@@ -45,30 +46,4 @@ export const GridCell = ({ date }: GridCellProps) => {
       events={eventElements}
     />
   );
-};
-
-const datesAreSameDay = (firstDate: Date, secondDate: Date): boolean => {
-  return (
-    firstDate.getFullYear() === secondDate.getFullYear() &&
-    firstDate.getMonth() === secondDate.getMonth() &&
-    firstDate.getDate() === secondDate.getDate()
-  );
-};
-
-const getEvents = (date: Date) => {
-  const eventsPayload = localStorage.getItem("events");
-  if (!eventsPayload) return [];
-  const events: Event[] = JSON.parse(eventsPayload);
-  const found = events.filter((event) => {
-    const from = new Date(event.from);
-    const to = new Date(event.to);
-    return isDateInRange(date, from, to);
-  });
-  return found;
-};
-
-const isDateInRange = (date: Date, from: Date, to: Date): boolean => {
-  from.setHours(0) && from.setMinutes(0) && from.setSeconds(0, 0);
-  to.setHours(0) && to.setMinutes(0) && from.setSeconds(0, 0);
-  return from <= date && date <= to;
 };

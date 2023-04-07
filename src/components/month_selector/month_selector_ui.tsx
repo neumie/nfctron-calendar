@@ -2,7 +2,7 @@ import { Box, IconButton } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
-import { ShiftDirection } from "./month_selector_hook";
+import { ShiftDirection } from "./../../utils/utils";
 import type { Dayjs } from "dayjs";
 
 export type MonthSelectorUIProps = {

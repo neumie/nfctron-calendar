@@ -1,7 +1,6 @@
 import { Dayjs } from "dayjs";
 import { useCalendarContext } from "../../containers/calendar/calendar_context";
-
-export type ShiftDirection = "forward" | "backward";
+import { ShiftDirection, shiftMonth } from "../../utils/utils";
 
 export const useMonthSelector = () => {
   const { setCalendarState, activeDate } = useCalendarContext();
@@ -19,20 +18,4 @@ export const useMonthSelector = () => {
     handleMonthChange,
     handleMonthShift,
   };
-};
-
-const shiftMonth = (date: Date, direction: ShiftDirection): Date => {
-  const monthIncrement = direction === "forward" ? 1 : -1;
-
-  let newMonth = date.getMonth() + monthIncrement;
-  let newYear = date.getFullYear();
-  if (newMonth < 0) {
-    newMonth = 11;
-    newYear--;
-  } else if (newMonth > 11) {
-    newMonth = 0;
-    newYear++;
-  }
-
-  return new Date(newYear, newMonth, date.getDate());
 };
