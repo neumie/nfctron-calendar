@@ -1,12 +1,12 @@
 import { MonthGridUI } from "./month_grid_ui";
 import { useMonthGrid } from "./month_grid_hook";
-import { GridCell } from "../../../components/grid_cell/grid_cell";
+import { MonthGridCell } from "./month_grid_cell/month_grid_cell";
 
 export const MonthGrid = () => {
   const { activeDate } = useMonthGrid();
   const cells = generateMonthArray(activeDate);
   const gridCells = cells.map((cell, index) => (
-    <GridCell key={index} date={cell} />
+    <MonthGridCell key={index} date={cell} />
   ));
 
   const numberOfWeeks = cells.length / 7;

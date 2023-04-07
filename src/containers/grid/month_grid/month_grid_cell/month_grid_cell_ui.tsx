@@ -2,7 +2,7 @@ import { Theme, alpha } from "@mui/material";
 import { Box } from "@mui/material";
 import React from "react";
 
-export type GridCellUIProps = {
+export type MonthGridCellUIProps = {
   today: boolean;
   selected: boolean;
   day: number;
@@ -12,7 +12,7 @@ export type GridCellUIProps = {
   events: React.ReactNode;
 };
 
-export const GridCellUI = ({
+export const MonthGridCellUI = ({
   today,
   selected,
   day,
@@ -20,7 +20,7 @@ export const GridCellUI = ({
   theme,
   onClick,
   events,
-}: GridCellUIProps) => {
+}: MonthGridCellUIProps) => {
   return (
     <Box
       onClick={onClick}

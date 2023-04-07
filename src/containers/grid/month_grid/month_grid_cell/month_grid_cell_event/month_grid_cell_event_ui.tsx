@@ -1,11 +1,14 @@
 import { Box } from "@mui/material";
 
-export type GridCellEventUIProps = {
+export type MonthGridCellEventUIProps = {
   title: string;
   color: string;
 };
 
-export const GridCellEventUI = ({ title, color }: GridCellEventUIProps) => {
+export const MonthGridCellEventUI = ({
+  title,
+  color,
+}: MonthGridCellEventUIProps) => {
   return (
     <Box
       sx={{

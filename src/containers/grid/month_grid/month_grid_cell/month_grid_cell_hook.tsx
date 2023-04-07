@@ -1,6 +1,6 @@
-import { useCalendarContext } from "./../../containers/calendar/calendar_context";
+import { useCalendarContext } from "../../../calendar/calendar_context";
 
-export const useGridCell = () => {
+export const useMonthGridCell = () => {
   const { setCalendarState, activeDate } = useCalendarContext();
 
   return {

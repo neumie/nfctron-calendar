@@ -1,17 +1,17 @@
-import { GridCellUI } from "./grid_cell_ui";
-import { useGridCell } from "./grid_cell_hook";
+import { MonthGridCellUI } from "./month_grid_cell_ui";
+import { useMonthGridCell } from "./month_grid_cell_hook";
 import { useTheme } from "@mui/material/styles";
-import { Event, filterEventsByDate } from "../../utils/utils";
-import { GridCellEvent } from "./grid_cell_event/grid_cell_event";
-import { getEvents, datesAreSameDay } from "../../utils/utils";
+import { Event, filterEventsByDate } from "../../../../utils/utils";
+import { MonthGridCellEvent } from "./month_grid_cell_event/month_grid_cell_event";
+import { getEvents, datesAreSameDay } from "../../../../utils/utils";
 
-export type GridCellProps = {
+export type MonthGridCellProps = {
   date: Date;
 };
 
-export const GridCell = ({ date }: GridCellProps) => {
+export const MonthGridCell = ({ date }: MonthGridCellProps) => {
   const theme = useTheme();
-  const { setCalendarState, activeDate } = useGridCell();
+  const { setCalendarState, activeDate } = useMonthGridCell();
 
   const selected: boolean = datesAreSameDay(date, activeDate);
   const today: boolean = datesAreSameDay(date, new Date());
@@ -20,7 +20,7 @@ export const GridCell = ({ date }: GridCellProps) => {
   const events: Event[] = getEvents();
   const filteredEvents: Event[] = filterEventsByDate(events, date);
   const eventElements = filteredEvents.map(({ id, title, color }) => {
-    return <GridCellEvent key={id} title={title} color={color} />;
+    return <MonthGridCellEvent key={id} title={title} color={color} />;
   });
 
   //Display month if it's the first day of the month
@@ -37,7 +37,7 @@ export const GridCell = ({ date }: GridCellProps) => {
   };
 
   return (
-    <GridCellUI
+    <MonthGridCellUI
       today={today}
       selected={selected}
       day={day}
