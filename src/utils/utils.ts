@@ -1,3 +1,4 @@
+import { number } from "prop-types";
 import { CalendarState } from "../containers/calendar/calendar_context";
 
 export const dayNames = [
@@ -26,10 +27,15 @@ export type Event = {
 };
 
 
-export const getEvents = (date: Date) => {
+export const getEvents = (date: Date): Event[] => {
   const eventsPayload = localStorage.getItem("events");
   if (!eventsPayload) return [];
-  const events: Event[] = JSON.parse(eventsPayload);
+  let events: Event[] = JSON.parse(eventsPayload);
+  events = events.map(event => {
+    const from = new Date(event.from);
+    const to = new Date(event.to);
+    return { ...event, from, to };
+  })
   const found = events.filter((event) => {
     const from = new Date(event.from);
     const to = new Date(event.to);
@@ -102,6 +108,31 @@ export const combineDates = (date1: Date, date2: Date): Date => {
 
   return new Date(year, month, day, hours, minutes);
 };
+
+export const getDateDifference = (from: Date, to: Date): number => {
+  const difference: number = Math.abs(to.getTime() - from.getTime());
+  return difference;
+}
+
+export const padToTwoDigits = (number: number): string => {
+  return number.toString().padStart(2, '0')
+}
+
+export const convertMsToString = (ms: number): string => {
+  const MS_PER_MINUTE = 1000 * 60;
+
+  let minutes: number = ms / MS_PER_MINUTE;
+  let hours: number = Math.floor(minutes / 60);
+  const days: number = Math.floor(hours / 24);
+  hours = days % 24;
+  minutes = minutes % 60;
+
+  const daysString = padToTwoDigits(days);
+  const hoursString = padToTwoDigits(hours);
+  const minutesString = padToTwoDigits(minutes);
+
+  return `${daysString}:${hoursString}:${minutesString}`;
+}
 
 export const shiftMonth = (date: Date, direction: ShiftDirection): Date => {
   const monthIncrement = direction === "forward" ? 1 : -1;
