@@ -1,4 +1,3 @@
-import { number } from "prop-types";
 import { CalendarState } from "../containers/calendar/calendar_context";
 
 export const dayNames = [
@@ -26,8 +25,7 @@ export type Event = {
   color: string;
 };
 
-
-export const getEvents = (date: Date): Event[] => {
+export const getEvents = (): Event[] => {
   const eventsPayload = localStorage.getItem("events");
   if (!eventsPayload) return [];
   let events: Event[] = JSON.parse(eventsPayload);
@@ -36,6 +34,10 @@ export const getEvents = (date: Date): Event[] => {
     const to = new Date(event.to);
     return { ...event, from, to };
   })
+  return events
+}
+
+export const filterEventsByDate = (events: Event[], date: Date): Event[] => {
   const found = events.filter((event) => {
     const from = new Date(event.from);
     const to = new Date(event.to);
@@ -60,7 +62,14 @@ export const datesAreSameDay = (firstDate: Date, secondDate: Date): boolean => {
 
 export const addEvent = (setCalendarState: (
     state: Partial<Omit<CalendarState, "setCalendarState">>
-  ) => void, activeDate: Date, eventTitle: string, eventFromDate: Date, eventFromTime: Date, eventToDate: Date, eventToTime: Date, eventColor: string) => {
+  ) => void,
+    activeDate: Date,
+    eventTitle: string,
+    eventFromDate: Date,
+    eventFromTime: Date,
+    eventToDate: Date,
+    eventToTime: Date,
+    eventColor: string) => {
   //Make the Event object
   const eventFrom = combineDates(eventFromDate, eventFromTime);
   const eventTo = combineDates(eventToDate, eventToTime);
@@ -72,23 +81,59 @@ export const addEvent = (setCalendarState: (
     color: eventColor,
   };
 
-  //Push the Event object to localStorage
+  pushEventToLocalStorage(newEvent);
+  resetEventEditorInputs(setCalendarState, activeDate);
+};
+
+export const removeEvent = (setCalendarState: (
+    state: Partial<Omit<CalendarState, "setCalendarState">>
+  ) => void, eventId: string) => {
+  let events = getEvents();
+  events = events.filter(event => event.id !== eventId);
+
+  localStorage.setItem("events", JSON.stringify(events));
+  //Trigger re-render
+  setCalendarState({});
+}
+
+export const loadEvent = (setCalendarState: (
+    state: Partial<Omit<CalendarState, "setCalendarState">>
+  ) => void, eventId: string) => {
+    const events = getEvents();
+    const event: Event | undefined = events.find(event => event.id === eventId)
+
+    if (!event) {
+      throw new Error("Unreachable error");
+    }
+    
+    setCalendarState({ 
+      eventEditorLock: true,
+      eventTitle: event.title,
+      eventFromDate: event.from,
+      eventFromTime: event.from,
+      eventToDate: event.to,
+      eventToTime: event.to,
+      eventColor: event.color, 
+      selectedEventId: eventId,
+    })
+}
+
+export const pushEventToLocalStorage = (event: Event): void => {
   const prevLocalStorage = localStorage.getItem("events");
   if (prevLocalStorage) {
     const prevEvents = JSON.parse(prevLocalStorage);
-    prevEvents.push(newEvent);
+    event && prevEvents.push(event);
     localStorage.setItem("events", JSON.stringify(prevEvents));
   } else {
-    localStorage.setItem("events", JSON.stringify([newEvent]));
+    localStorage.setItem("events", JSON.stringify([event]));
   }
+}
 
-  resetEventInputs(setCalendarState, activeDate);
-};
-
-export const resetEventInputs = (setCalendarState: (
+export const resetEventEditorInputs = (setCalendarState: (
     state: Partial<Omit<CalendarState, "setCalendarState">>
   ) => void, activeDate: Date) => {
   setCalendarState({
+    selectedEventId: "",
     eventEditorLock: false,
     eventTitle: "",
     eventFromDate: activeDate,
@@ -97,6 +142,21 @@ export const resetEventInputs = (setCalendarState: (
     eventToTime: activeDate,
     eventColor: "",
   });
+}
+
+export const editEvent = (setCalendarState: (
+    state: Partial<Omit<CalendarState, "setCalendarState">>
+  ) => void,
+    eventId: string,
+    activeDate: Date,
+    eventTitle: string,
+    eventFromDate: Date,
+    eventFromTime: Date,
+    eventToDate: Date,
+    eventToTime: Date,
+    eventColor: string) => {
+    removeEvent(setCalendarState, eventId);
+    addEvent(setCalendarState, activeDate, eventTitle, eventFromDate, eventFromTime, eventToDate, eventToTime, eventColor);
 }
 
 export const combineDates = (date1: Date, date2: Date): Date => {

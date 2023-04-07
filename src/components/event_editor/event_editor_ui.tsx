@@ -1,5 +1,7 @@
 import { Box, IconButton, TextField } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material/";
+import { Edit as EditIcon } from "@mui/icons-material";
+import { Close as CloseIcon } from "@mui/icons-material";
 import {
   DatePicker,
   LocalizationProvider,
@@ -25,6 +27,9 @@ export type EventEditorUIProps = {
   onEventToTimeChange: (newEventToTime: Dayjs | null) => void;
   eventColor: string;
   onEventColorChange: (newEventColor: ColorResult) => void;
+  selectedEventId: string;
+  onEventEdit: () => void;
+  onExitEditMode: () => void;
 };
 
 export const EventEditorUI = ({
@@ -41,6 +46,9 @@ export const EventEditorUI = ({
   onEventToTimeChange,
   eventColor,
   onEventColorChange,
+  selectedEventId,
+  onEventEdit,
+  onExitEditMode,
 }: EventEditorUIProps) => {
   const datePickerStyle = {
     width: "175px",
@@ -74,17 +82,42 @@ export const EventEditorUI = ({
           value={eventTitle}
           onChange={onEventTitleChange}
         />
-        <IconButton
-          sx={{
-            marginTop: 1.5,
-          }}
-          onClick={onEventAdd}
-          aria-label="add event"
-        >
-          <AddIcon />
-        </IconButton>
+        {/* ADD OR EDIT BUTTON */}
+        {selectedEventId ? (
+          <>
+            <IconButton
+              sx={{
+                marginTop: 1.5,
+              }}
+              onClick={onEventEdit}
+              aria-label="edit event"
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              sx={{
+                marginTop: 1.5,
+              }}
+              onClick={onExitEditMode}
+              aria-label="exit editing mode"
+            >
+              <CloseIcon />
+            </IconButton>
+          </>
+        ) : (
+          <IconButton
+            sx={{
+              marginTop: 1.5,
+            }}
+            onClick={onEventAdd}
+            aria-label="add event"
+          >
+            <AddIcon />
+          </IconButton>
+        )}
       </Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        {/* FROM DATE PICKER */}
         <Box
           sx={{
             display: "flex",
@@ -104,6 +137,7 @@ export const EventEditorUI = ({
           />
         </Box>
 
+        {/* TO DATE PICKER */}
         <Box
           sx={{
             display: "flex",
@@ -124,6 +158,7 @@ export const EventEditorUI = ({
         </Box>
       </LocalizationProvider>
 
+      {/* COLOR PICKER */}
       <Box
         sx={{
           marginLeft: 0.5,

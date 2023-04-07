@@ -1,10 +1,13 @@
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import { Delete, Delete as DeleteIcon } from "@mui/icons-material";
 
 export type LegendEventUIProps = {
   title: string;
   from: Date;
   duration: string;
   color: string;
+  onDelete: () => void;
+  onClick: () => void;
 };
 
 export const LegendEventUI = ({
@@ -12,6 +15,8 @@ export const LegendEventUI = ({
   from,
   duration,
   color,
+  onDelete,
+  onClick,
 }: LegendEventUIProps) => {
   return (
     <Box
@@ -22,6 +27,7 @@ export const LegendEventUI = ({
         borderLeft: 5,
         borderColor: color,
       }}
+      onClick={onClick}
     >
       <Box
         sx={{
@@ -33,6 +39,9 @@ export const LegendEventUI = ({
         <Box>{duration}</Box>
       </Box>
       {title}
+      <IconButton onClick={onDelete} aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
     </Box>
   );
 };

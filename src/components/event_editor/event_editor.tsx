@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 
 export const EventEditor = () => {
   const {
+    selectedEventId,
     handleEventAdd,
     eventTitle,
     handleEventTitleChange,
@@ -17,6 +18,8 @@ export const EventEditor = () => {
     handleEventToTimeChange,
     eventColor,
     handleEventColorChange,
+    handleEventEdit,
+    handleExitEditMode,
   } = useEventEditor();
   const eventFromDateDayjs = dayjs(eventFromDate);
   const eventFromTimeDayjs = dayjs(eventFromTime);
@@ -38,6 +41,9 @@ export const EventEditor = () => {
       onEventToTimeChange={handleEventToTimeChange}
       eventColor={eventColor}
       onEventColorChange={handleEventColorChange}
+      selectedEventId={selectedEventId}
+      onEventEdit={handleEventEdit}
+      onExitEditMode={handleExitEditMode}
     />
   );
 };

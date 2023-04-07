@@ -6,9 +6,11 @@ export type CalendarState = {
   readonly setCalendarState: (
     state: Partial<Omit<CalendarState, "setCalendarState">>
   ) => void;
+  render: boolean;
   activeGridView: GridViews;
   activeDate: Date;
   eventEditorLock: boolean;
+  selectedEventId: string;
   eventTitle: string;
   eventFromDate: Date;
   eventFromTime: Date;
@@ -20,9 +22,11 @@ export type CalendarState = {
 const defaultDate = new Date();
 const defaultState: CalendarState = {
   setCalendarState: () => {},
+  render: true,
   activeGridView: GridViews.MONTH,
   activeDate: defaultDate,
   eventEditorLock: false,
+  selectedEventId: "",
   eventTitle: "",
   eventFromDate: defaultDate,
   eventFromTime: defaultDate,

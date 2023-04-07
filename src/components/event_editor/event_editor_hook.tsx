@@ -2,7 +2,11 @@ import type { Dayjs } from "dayjs";
 import { useCalendarContext } from "./../../containers/calendar/calendar_context";
 import React, { useEffect } from "react";
 import { ColorResult } from "react-color";
-import { addEvent } from "./../../utils/utils";
+import {
+  addEvent,
+  editEvent,
+  resetEventEditorInputs,
+} from "./../../utils/utils";
 
 export const useEventEditor = () => {
   const {
@@ -10,6 +14,7 @@ export const useEventEditor = () => {
     activeDate,
     eventTitle,
     eventEditorLock,
+    selectedEventId,
     eventFromDate,
     eventFromTime,
     eventToDate,
@@ -28,6 +33,24 @@ export const useEventEditor = () => {
       eventToTime,
       eventColor
     );
+  };
+
+  const handleEventEdit = () => {
+    editEvent(
+      setCalendarState,
+      selectedEventId,
+      activeDate,
+      eventTitle,
+      eventFromDate,
+      eventFromTime,
+      eventToDate,
+      eventToTime,
+      eventColor
+    );
+  };
+
+  const handleExitEditMode = () => {
+    resetEventEditorInputs(setCalendarState, activeDate);
   };
 
   const handleEventTitleChange = (
@@ -70,6 +93,7 @@ export const useEventEditor = () => {
   }, [activeDate]);
 
   return {
+    selectedEventId,
     handleEventAdd,
     eventTitle,
     handleEventTitleChange,
@@ -83,5 +107,7 @@ export const useEventEditor = () => {
     handleEventToTimeChange,
     eventColor,
     handleEventColorChange,
+    handleEventEdit,
+    handleExitEditMode,
   };
 };

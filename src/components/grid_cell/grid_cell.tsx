@@ -1,7 +1,7 @@
 import { GridCellUI } from "./grid_cell_ui";
 import { useGridCell } from "./grid_cell_hook";
 import { useTheme } from "@mui/material/styles";
-import type { Event } from "../../utils/utils";
+import { Event, filterEventsByDate } from "../../utils/utils";
 import { GridCellEvent } from "./grid_cell_event/grid_cell_event";
 import { getEvents, datesAreSameDay } from "../../utils/utils";
 
@@ -17,8 +17,9 @@ export const GridCell = ({ date }: GridCellProps) => {
   const today: boolean = datesAreSameDay(date, new Date());
   const day: number = date.getDate();
 
-  const events: Event[] = getEvents(date);
-  const eventElements = events.map(({ id, title, color }) => {
+  const events: Event[] = getEvents();
+  const filteredEvents: Event[] = filterEventsByDate(events, date);
+  const eventElements = filteredEvents.map(({ id, title, color }) => {
     return <GridCellEvent key={id} title={title} color={color} />;
   });
 

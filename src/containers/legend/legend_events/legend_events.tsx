@@ -1,13 +1,14 @@
 import { LegendEventsUI } from "./legend_events_ui";
 import { useLegendEvents } from "./legend_events_hook";
-import { getEvents } from "../../../utils/utils";
+import { filterEventsByDate, getEvents } from "../../../utils/utils";
 import { LegendEvent } from "./legend_event/legend_event";
 
 export const LegendEvents = () => {
   const { activeDate } = useLegendEvents();
 
-  const events = getEvents(activeDate);
-  const eventElements = events.map((event, index) => {
+  const events = getEvents();
+  const filteredEvents = filterEventsByDate(events, activeDate);
+  const eventElements = filteredEvents.map((event, index) => {
     return <LegendEvent key={index} event={event} />;
   });
 
