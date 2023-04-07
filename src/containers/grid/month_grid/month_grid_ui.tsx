@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { ReactNode } from "react";
+import { MonthGridHeader } from "./month_grid_header/month_grid_header";
 
 export type MonthGridUIProps = {
   gridCells: ReactNode[];
@@ -8,16 +9,20 @@ export type MonthGridUIProps = {
 
 export const MonthGridUI = ({ gridCells, numberOfWeeks }: MonthGridUIProps) => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        display: "grid",
-        gridTemplateColumns: "repeat(7, 1fr)",
-        gridTemplateRows: `repeat(${numberOfWeeks}, 1fr)`,
-      }}
-    >
-      {gridCells}
-    </Box>
+    <>
+      <MonthGridHeader />
+
+      <Box
+        sx={{
+          flexGrow: 1,
+          minHeight: 0,
+          display: "grid",
+          gridTemplateColumns: "repeat(7, 1fr)",
+          gridTemplateRows: `repeat(${numberOfWeeks}, 1fr)`,
+        }}
+      >
+        {gridCells}
+      </Box>
+    </>
   );
 };

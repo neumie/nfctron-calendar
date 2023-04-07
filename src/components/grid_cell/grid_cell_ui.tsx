@@ -26,9 +26,12 @@ export const GridCellUI = ({
       onClick={onClick}
       sx={[
         {
+          minWidth: 0,
+
           padding: "0.25em",
           border: 0.5,
           borderColor: "grey.300",
+          overflow: "hidden",
         },
         today && {
           borderTop: 4,

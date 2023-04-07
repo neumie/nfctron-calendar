@@ -8,6 +8,7 @@ export const MonthGrid = () => {
   const gridCells = cells.map((cell) => <GridCell date={cell} />);
 
   const numberOfWeeks = cells.length / 7;
+
   return <MonthGridUI gridCells={gridCells} numberOfWeeks={numberOfWeeks} />;
 };
 
