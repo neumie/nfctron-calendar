@@ -17,8 +17,8 @@ export const GridCell = ({ date }: GridCellProps) => {
   const day: number = date.getDate();
 
   const events: Event[] = getEvents(date);
-  const eventElements = events.map(({ title, color }) => {
-    return <GridCellEvent title={title} color={color} />;
+  const eventElements = events.map(({ id, title, color }) => {
+    return <GridCellEvent key={id} title={title} color={color} />;
   });
 
   //Display month if it's the first day of the month

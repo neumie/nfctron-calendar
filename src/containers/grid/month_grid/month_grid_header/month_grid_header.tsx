@@ -10,6 +10,8 @@ export const MonthGridHeader = () => {
     "Saturday",
     "Sunday",
   ];
-  const dayNameElements = dayNames.map((dayName) => <p> {dayName}</p>);
+  const dayNameElements = dayNames.map((dayName, index) => (
+    <p key={index}>{dayName}</p>
+  ));
   return <MonthGridHeaderUI dayNames={dayNameElements} />;
 };

@@ -5,7 +5,9 @@ import { GridCell } from "../../../components/grid_cell/grid_cell";
 export const MonthGrid = () => {
   const { activeDate } = useMonthGrid();
   const cells = generateMonthArray(activeDate);
-  const gridCells = cells.map((cell) => <GridCell date={cell} />);
+  const gridCells = cells.map((cell, index) => (
+    <GridCell key={index} date={cell} />
+  ));
 
   const numberOfWeeks = cells.length / 7;
 

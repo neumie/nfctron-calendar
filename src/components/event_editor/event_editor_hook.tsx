@@ -24,6 +24,7 @@ export const useEventEditor = () => {
     const eventFrom = combineDates(eventFromDate, eventFromTime);
     const eventTo = combineDates(eventToDate, eventToTime);
     const newEvent: Event = {
+      id: crypto.randomUUID(),
       title: eventTitle,
       from: eventFrom,
       to: eventTo,
