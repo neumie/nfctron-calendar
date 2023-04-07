@@ -23,7 +23,6 @@ export const LegendEvent = ({ event }: LegendEventProps) => {
   };
 
   const handleClick = () => {
-    console.log("hehe");
     loadEvent(setCalendarState, id);
   };
 
