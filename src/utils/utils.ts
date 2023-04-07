@@ -1,4 +1,4 @@
-import { CalendarState, Event } from "../containers/calendar/calendar_context";
+import { CalendarState } from "../containers/calendar/calendar_context";
 
 export const dayNames = [
   "Monday",
@@ -11,6 +11,20 @@ export const dayNames = [
 ];
 
 export type ShiftDirection = "forward" | "backward";
+
+export enum GridViews {
+  MONTH = "MONTH",
+  WEEK = "WEEK",
+}
+
+export type Event = {
+  id: string;
+  title: string;
+  from: Date;
+  to: Date;
+  color: string;
+};
+
 
 export const getEvents = (date: Date) => {
   const eventsPayload = localStorage.getItem("events");

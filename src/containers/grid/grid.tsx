@@ -1,4 +1,4 @@
-import { GridViews } from "../calendar/calendar_context";
+import { GridViews } from "../../utils/utils";
 import { useGrid } from "./grid_hook";
 import { MonthGrid } from "./month_grid/month_grid";
 import { WeekGrid } from "./week_grid/week_grid";

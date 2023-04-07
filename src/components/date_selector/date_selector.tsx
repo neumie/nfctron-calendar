@@ -1,4 +1,4 @@
-import { GridViews } from "../../containers/calendar/calendar_context";
+import { GridViews } from "../../utils/utils";
 import { MonthSelector } from "../month_selector/month_selector";
 import { WeekSelector } from "../week_selector/week_selector";
 import { useDateSelector } from "./date_selector_hook";

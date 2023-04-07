@@ -1,6 +1,6 @@
 import { ToggleButton } from "@mui/material";
 import { ToggleButtonGroup } from "@mui/material";
-import { GridViews } from "../../containers/calendar/calendar_context";
+import { GridViews } from "../../utils/utils";
 
 export type ViewSelectorUIProps = {
   activeGridView: GridViews;

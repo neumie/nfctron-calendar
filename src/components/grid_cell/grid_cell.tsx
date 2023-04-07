@@ -1,7 +1,7 @@
 import { GridCellUI } from "./grid_cell_ui";
 import { useGridCell } from "./grid_cell_hook";
 import { useTheme } from "@mui/material/styles";
-import type { Event } from "./../../containers/calendar/calendar_context";
+import type { Event } from "../../utils/utils";
 import { GridCellEvent } from "./grid_cell_event/grid_cell_event";
 import { getEvents, datesAreSameDay } from "../../utils/utils";
 

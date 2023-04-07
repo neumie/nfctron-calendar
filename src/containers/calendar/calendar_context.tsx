@@ -1,18 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import { GridViews } from "../../utils/utils";
 import type { Context, ReactNode } from "react";
-
-export enum GridViews {
-  MONTH = "MONTH",
-  WEEK = "WEEK",
-}
-
-export type Event = {
-  id: string;
-  title: string;
-  from: Date;
-  to: Date;
-  color: string;
-};
 
 export type CalendarState = {
   readonly setCalendarState: (
