@@ -4,13 +4,11 @@ import { GridCell } from "../../../components/grid_cell/grid_cell";
 
 export const MonthGrid = () => {
   const { activeDate } = useMonthGrid();
-  //Array s 31 GridCellama
-  //Každá GridCella bude brat pres props
-  //DATUM
   const cells = generateMonthArray(activeDate);
   const gridCells = cells.map((cell) => <GridCell date={cell} />);
 
-  return <MonthGridUI gridCells={gridCells} />;
+  const numberOfWeeks = cells.length / 7;
+  return <MonthGridUI gridCells={gridCells} numberOfWeeks={numberOfWeeks} />;
 };
 
 const generateMonthArray = (date: Date) => {
