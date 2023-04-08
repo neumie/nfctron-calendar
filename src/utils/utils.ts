@@ -103,7 +103,7 @@ export const loadEvent = (setCalendarState: (
     const event: Event | undefined = events.find(event => event.id === eventId)
 
     if (!event) {
-      throw new Error("Unreachable error");
+      return
     }
     
     setCalendarState({ 
