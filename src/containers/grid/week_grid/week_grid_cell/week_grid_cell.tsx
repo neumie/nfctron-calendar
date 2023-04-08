@@ -8,7 +8,7 @@ export type WeekGridCellProps = {
 };
 
 export const WeekGridCell = ({ date }: WeekGridCellProps) => {
-  const { setCalendarState, activeDate } = useWeekGridCell();
+  const { setCalendarState } = useWeekGridCell();
 
   const handleClick = (event: React.MouseEvent) => {
     setCalendarState({ activeDate: date });
@@ -28,7 +28,7 @@ export const WeekGridCell = ({ date }: WeekGridCellProps) => {
         from={from}
         to={to}
       />
-    ); //duration in half hours
+    );
   });
 
   return <WeekGridCellUI events={eventElements} onClick={handleClick} />;

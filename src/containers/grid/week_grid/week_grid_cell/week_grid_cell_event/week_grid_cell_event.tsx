@@ -21,6 +21,7 @@ export const WeekGridCellEvent = ({
   let toHours = to.getHours() * 2;
   to.getMinutes() >= 30 && toHours++;
   const toGrid = toHours;
+  console.log(title, to);
 
   return (
     <WeekGridCellEventUI

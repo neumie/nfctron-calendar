@@ -16,7 +16,8 @@ export const WeekGridCellUI = ({ events, onClick }: WeekGridCellUIProps) => {
         minWidth: 0,
         overflow: "hidden",
         display: "grid",
-        gridTemplateRows: "repeat(48, 1fr)", //Add dependency
+        gridTemplateRows: "repeat(48, 1fr)",
+        gridAutoColumns: "1fr",
       }}
     >
       {events}
