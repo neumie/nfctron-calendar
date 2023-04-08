@@ -17,7 +17,7 @@ export const WeekGridCellEventUI = ({
     <Box
       sx={{
         backgroundColor: color,
-        gridRow: `${from + 1} / ${to} `,
+        gridRow: `${from + 1} / ${to + 1} `,
       }}
     >
       {title}
