@@ -1,36 +1,34 @@
-import { Box } from "@mui/material";
-import { ReactNode } from "react";
-import { MonthGridHeader } from "./month_grid_header/month_grid_header";
+import { Box } from '@mui/material';
+import { ReactNode } from 'react';
+import { MonthGridHeader } from './month_grid_header/month_grid_header';
 
 export type MonthGridUIProps = {
   gridCells: ReactNode[];
   numberOfWeeks: number;
 };
 
-export const MonthGridUI = ({ gridCells, numberOfWeeks }: MonthGridUIProps) => {
-  return (
+export const MonthGridUI = ({ gridCells, numberOfWeeks }: MonthGridUIProps) => (
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+      minHeight: '0',
+      minWidth: '0',
+    }}
+  >
+    <MonthGridHeader />
+
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        minHeight: "0",
-        minWidth: "0",
+        flexGrow: 1,
+        minHeight: 0,
+        display: 'grid',
+        gridTemplateColumns: 'repeat(7, 1fr)',
+        gridTemplateRows: `repeat(${numberOfWeeks}, 1fr)`,
       }}
     >
-      <MonthGridHeader />
-
-      <Box
-        sx={{
-          flexGrow: 1,
-          minHeight: 0,
-          display: "grid",
-          gridTemplateColumns: "repeat(7, 1fr)",
-          gridTemplateRows: `repeat(${numberOfWeeks}, 1fr)`,
-        }}
-      >
-        {gridCells}
-      </Box>
+      {gridCells}
     </Box>
-  );
-};
+  </Box>
+);

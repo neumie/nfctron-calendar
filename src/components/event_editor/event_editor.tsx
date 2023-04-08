@@ -1,6 +1,5 @@
-import { EventEditorUI } from "./event_editor_ui";
 import { useEventEditor } from "./event_editor_hook";
-import dayjs from "dayjs";
+import { EventEditorUI } from "./event_editor_ui";
 
 export const EventEditor = () => {
   const {
@@ -8,23 +7,19 @@ export const EventEditor = () => {
     handleEventAdd,
     eventTitle,
     handleEventTitleChange,
-    eventFromDate,
+    eventFromDateDayjs,
     handleEventFromChange,
-    eventFromTime,
+    eventFromTimeDayjs,
     handleEventFromTimeChange,
-    eventToDate,
+    eventToDateDayjs,
     handleEventToChange,
-    eventToTime,
+    eventToTimeDayjs,
     handleEventToTimeChange,
     eventColor,
     handleEventColorChange,
     handleEventEdit,
     handleExitEditMode,
   } = useEventEditor();
-  const eventFromDateDayjs = dayjs(eventFromDate);
-  const eventFromTimeDayjs = dayjs(eventFromTime);
-  const eventToDateDayjs = dayjs(eventToDate);
-  const eventToTimeDayjs = dayjs(eventToTime);
 
   return (
     <EventEditorUI

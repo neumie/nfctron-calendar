@@ -1,5 +1,3 @@
-import { LegendUI } from "./legend_ui";
+import { LegendUI } from './legend_ui';
 
-export const Legend = () => {
-  return <LegendUI />;
-};
+export const Legend = () => <LegendUI />;

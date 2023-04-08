@@ -1,37 +1,20 @@
-import {
-  loadEvent,
-  removeEvent,
-  convertDateToHoursMinutes,
-} from "../../../../utils/utils";
-import { LegendEventUI } from "./legend_event_ui";
-import { Event } from "../../../../utils/utils";
-import { useLegendEvent } from "./legend_event_hook";
+import { useLegendEvent } from './legend_event_hook';
+import { LegendEventUI } from './legend_event_ui';
+import { Event } from '../../../../utils/utils';
 
 export type LegendEventProps = {
   event: Event;
 };
 
 export const LegendEvent = ({ event }: LegendEventProps) => {
-  const { setCalendarState } = useLegendEvent();
-  const { id, title, color, from, to } = event;
-
-  const fromString = convertDateToHoursMinutes(from);
-  const toString = convertDateToHoursMinutes(to);
-
-  const handleDelete = () => {
-    removeEvent(setCalendarState, id);
-  };
-
-  const handleClick = () => {
-    loadEvent(setCalendarState, id);
-  };
+  const { fromString, toString, handleClick, handleDelete } = useLegendEvent(event);
 
   return (
     <LegendEventUI
-      title={title}
+      title={event.title}
       from={fromString}
       to={toString}
-      color={color}
+      color={event.color}
       onDelete={handleDelete}
       onClick={handleClick}
     />

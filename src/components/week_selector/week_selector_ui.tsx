@@ -1,32 +1,22 @@
-import { Box } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import type { Dayjs } from "dayjs";
-import "dayjs/locale/en-gb";
+import { Box } from '@mui/material';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import type { Dayjs } from 'dayjs';
+import 'dayjs/locale/en-gb';
 
 export type WeekSelectorUIProps = {
   activeDateDayjs: Dayjs;
-  handleWeekChange: (newDateDayjs: Dayjs | null) => void;
+  onWeekChange: (newDateDayjs: Dayjs | null) => void;
 };
 
-export const WeekSelectorUI = ({
-  activeDateDayjs,
-  handleWeekChange,
-}: WeekSelectorUIProps) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-      }}
-    >
-      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-        <DatePicker
-          label={"week"}
-          value={activeDateDayjs}
-          onChange={handleWeekChange}
-          views={["day"]}
-        />
-      </LocalizationProvider>
-    </Box>
-  );
-};
+export const WeekSelectorUI = ({ activeDateDayjs, onWeekChange }: WeekSelectorUIProps) => (
+  <Box
+    sx={{
+      display: 'flex',
+    }}
+  >
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
+      <DatePicker label={'week'} value={activeDateDayjs} onChange={onWeekChange} views={['day']} />
+    </LocalizationProvider>
+  </Box>
+);

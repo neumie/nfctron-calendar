@@ -1,15 +1,8 @@
-import { WeekSelectorUI } from "./week_selector_ui";
-import { useWeekSelector } from "./week_selector_hook";
-import dayjs from "dayjs";
+import { useWeekSelector } from './week_selector_hook';
+import { WeekSelectorUI } from './week_selector_ui';
 
 export const WeekSelector = () => {
-  const { activeDate, handleWeekChange } = useWeekSelector();
-  const activeDateDayjs = dayjs(activeDate);
+  const { activeDateDayjs, handleWeekChange } = useWeekSelector();
 
-  return (
-    <WeekSelectorUI
-      activeDateDayjs={activeDateDayjs}
-      handleWeekChange={handleWeekChange}
-    />
-  );
+  return <WeekSelectorUI activeDateDayjs={activeDateDayjs} onWeekChange={handleWeekChange} />;
 };

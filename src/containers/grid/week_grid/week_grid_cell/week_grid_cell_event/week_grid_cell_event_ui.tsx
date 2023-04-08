@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
 export type WeekGridCellEventUIProps = {
   title: string;
@@ -7,20 +7,13 @@ export type WeekGridCellEventUIProps = {
   to: number;
 };
 
-export const WeekGridCellEventUI = ({
-  title,
-  color,
-  from,
-  to,
-}: WeekGridCellEventUIProps) => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: color,
-        gridRow: `${from + 1} / ${to + 1} `,
-      }}
-    >
-      {title}
-    </Box>
-  );
-};
+export const WeekGridCellEventUI = ({ title, color, from, to }: WeekGridCellEventUIProps) => (
+  <Box
+    sx={{
+      backgroundColor: color,
+      gridRow: `${from + 1} / ${to + 1} `,
+    }}
+  >
+    {title}
+  </Box>
+);

@@ -1,58 +1,51 @@
-import React from "react";
-
-//MUI
 import { Box } from "@mui/material";
-
-//Components
 import { Header } from "../header/header";
 import { Grid } from "../grid/grid";
 import { Legend } from "../legend/legend";
 
-export const CalendarUI = () => {
-  return (
+export const CalendarUI = () => (
+  <Box
+    component="main"
+    sx={{
+      width: "100vw",
+      height: "100vh",
+      display: "grid",
+      gap: "1em",
+      gridTemplateRows: "auto 6fr",
+      gridTemplateColumns: "3fr 1fr",
+    }}
+  >
     <Box
-      component="main"
       sx={{
-        width: "100vw",
-        height: "100vh",
-        display: "grid",
-        gap: "1em",
-        gridTemplateRows: "auto 6fr",
-        gridTemplateColumns: "3fr 1fr",
+        gridRow: "1",
+        gridColumn: "1 / -2",
+        boxShadow: 2,
       }}
     >
-      <Box
-        sx={{
-          gridRow: "1",
-          gridColumn: "1 / -2",
-          boxShadow: 2,
-        }}
-      >
-        <Header />
-      </Box>
-
-      <Box
-        sx={{
-          gridRow: "2 / -1",
-          gridColumn: "1 / -2",
-          minHeight: 0,
-          boxShadow: 2,
-        }}
-      >
-        <Grid />
-      </Box>
-
-      <Box
-        sx={{
-          gridRow: "1 / -1",
-          gridColumn: "-2",
-          display: "flex",
-          flexDirection: "column",
-          boxShadow: 2,
-        }}
-      >
-        <Legend />
-      </Box>
+      <Header />
     </Box>
-  );
-};
+
+    <Box
+      sx={{
+        gridRow: "2 / -1",
+        gridColumn: "1 / -2",
+        minHeight: 0,
+        boxShadow: 2,
+      }}
+    >
+      <Grid />
+    </Box>
+
+    <Box
+      sx={{
+        gridRow: "1 / -1",
+        gridColumn: "-2",
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: 2,
+      }}
+    >
+      <Legend />
+    </Box>
+  </Box>
+);

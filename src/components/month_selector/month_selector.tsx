@@ -1,17 +1,14 @@
-import { MonthSelectorUI } from "./month_selector_ui";
-import { useMonthSelector } from "./month_selector_hook";
-import dayjs from "dayjs";
+import { useMonthSelector } from './month_selector_hook';
+import { MonthSelectorUI } from './month_selector_ui';
 
 export const MonthSelector = () => {
-  const { activeDate, handleMonthChange, handleMonthShift } =
-    useMonthSelector();
-  const activeDateDayjs = dayjs(activeDate);
+  const { activeDateDayjs, handleMonthChange, handleMonthShift } = useMonthSelector();
 
   return (
     <MonthSelectorUI
       activeDateDayjs={activeDateDayjs}
-      handleDateChange={handleMonthChange}
-      handleDateShift={handleMonthShift}
+      onDateChange={handleMonthChange}
+      onDateShift={handleMonthShift}
     />
   );
 };

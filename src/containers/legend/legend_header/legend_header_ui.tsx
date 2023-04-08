@@ -1,24 +1,22 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 
 export type LegendHeaderUIProps = {
-  activeDate: Date;
+  activeDateString: string;
 };
 
-export const LegendHeaderUI = ({ activeDate }: LegendHeaderUIProps) => {
-  const activeDateString = activeDate.toDateString();
-
+export const LegendHeaderUI = ({ activeDateString }: LegendHeaderUIProps) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
         padding: 2,
-        height: "60px",
+        height: '60px',
         borderBottom: 0.5,
-        borderColor: "grey.300",
+        borderColor: 'grey.300',
       }}
     >
-      <Typography variant="h5">{activeDateString}</Typography>
+      <Typography variant='h5'>{activeDateString}</Typography>
     </Box>
   );
 };

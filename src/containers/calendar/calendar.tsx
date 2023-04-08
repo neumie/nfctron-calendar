@@ -1,10 +1,8 @@
-import { CalendarContextProvider } from "./calendar_context";
-import { CalendarUI } from "./calendar_ui";
+import { CalendarContextProvider } from './calendar_context';
+import { CalendarUI } from './calendar_ui';
 
-export const Calendar = () => {
-  return (
-    <CalendarContextProvider>
-      <CalendarUI />
-    </CalendarContextProvider>
-  );
-};
+export const Calendar = () => (
+  <CalendarContextProvider>
+    <CalendarUI />
+  </CalendarContextProvider>
+);

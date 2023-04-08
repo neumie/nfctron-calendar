@@ -1,13 +1,11 @@
-import { Button } from "@mui/material";
+import { Button } from '@mui/material';
 
 export type TodayButtonUIProps = {
-  handleDateChange: () => void;
+  onDateChange: () => void;
 };
 
-export const TodayButtonUI = ({ handleDateChange }: TodayButtonUIProps) => {
-  return (
-    <Button onClick={() => handleDateChange()} variant="contained">
-      TODAY
-    </Button>
-  );
-};
+export const TodayButtonUI = ({ onDateChange }: TodayButtonUIProps) => (
+  <Button onClick={() => onDateChange()} variant='contained'>
+    TODAY
+  </Button>
+);

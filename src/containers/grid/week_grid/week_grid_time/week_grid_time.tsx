@@ -1,10 +1,9 @@
 import { Box } from "@mui/material";
+import { useWeekGridTime } from "./week_grid_time_hook";
 import { WeekGridTimeUI } from "./week_grid_time_ui";
-import { WeekGridTimeSection } from "./week_grid_time_section/week_grid_time_section";
 
 export const WeekGridTime = () => {
-  const sections = [...Array(24).keys()].map((hour, index) => (
-    <WeekGridTimeSection key={index} hour={hour} />
-  ));
+  const { sections } = useWeekGridTime();
+
   return <WeekGridTimeUI sections={sections} />;
 };

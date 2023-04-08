@@ -1,9 +1,11 @@
-import { Dayjs } from "dayjs";
-import { useCalendarContext } from "../../containers/calendar/calendar_context";
-import { ShiftDirection, shiftMonth } from "../../utils/utils";
+import dayjs, { Dayjs } from 'dayjs';
+import { useCalendarContext } from '../../containers/calendar/calendar_context';
+import { ShiftDirection, shiftMonth } from '../../utils/date';
 
 export const useMonthSelector = () => {
   const { setCalendarState, activeDate } = useCalendarContext();
+
+  const activeDateDayjs = dayjs(activeDate);
 
   const handleMonthChange = (newDateDayjs: Dayjs | null) => {
     const newDate = newDateDayjs?.toDate();
@@ -16,7 +18,7 @@ export const useMonthSelector = () => {
   };
 
   return {
-    activeDate,
+    activeDateDayjs,
     handleMonthChange,
     handleMonthShift,
   };

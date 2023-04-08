@@ -1,8 +1,8 @@
-import { LegendHeaderUI } from "./legend_header_ui";
-import { useLegendHeader } from "./legend_header_hook";
+import { useLegendHeader } from './legend_header_hook';
+import { LegendHeaderUI } from './legend_header_ui';
 
 export const LegendHeader = () => {
-  const { activeDate } = useLegendHeader();
+  const { activeDateString } = useLegendHeader();
 
-  return <LegendHeaderUI activeDate={activeDate} />;
+  return <LegendHeaderUI activeDateString={activeDateString} />;
 };

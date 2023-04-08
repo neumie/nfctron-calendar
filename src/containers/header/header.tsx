@@ -1,5 +1,3 @@
-import { HeaderUI } from "./header_ui";
+import { HeaderUI } from './header_ui';
 
-export const Header = () => {
-  return <HeaderUI />;
-};
+export const Header = () => <HeaderUI />;
