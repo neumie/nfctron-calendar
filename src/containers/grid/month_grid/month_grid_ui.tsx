@@ -9,7 +9,15 @@ export type MonthGridUIProps = {
 
 export const MonthGridUI = ({ gridCells, numberOfWeeks }: MonthGridUIProps) => {
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        minHeight: "0",
+        minWidth: "0",
+      }}
+    >
       <MonthGridHeader />
 
       <Box
@@ -23,6 +31,6 @@ export const MonthGridUI = ({ gridCells, numberOfWeeks }: MonthGridUIProps) => {
       >
         {gridCells}
       </Box>
-    </>
+    </Box>
   );
 };

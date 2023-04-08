@@ -1,7 +1,7 @@
 import { useCalendarContext } from "../../calendar/calendar_context";
 
 export const useWeekGrid = () => {
-  const { setCalendarState } = useCalendarContext();
+  const { setCalendarState, activeDate } = useCalendarContext();
 
-  return {};
+  return { activeDate };
 };

@@ -27,7 +27,6 @@ export const MonthGridCellUI = ({
       sx={[
         {
           minWidth: 0,
-
           padding: "0.25em",
           border: 0.5,
           borderColor: "grey.300",

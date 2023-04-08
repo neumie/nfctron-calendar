@@ -35,11 +35,8 @@ export const CalendarUI = () => {
         sx={{
           gridRow: "2 / -1",
           gridColumn: "1 / -2",
-          minHeight: "0",
-          minWidth: "0",
+          minHeight: 0,
           boxShadow: 2,
-          display: "flex",
-          flexDirection: "column",
         }}
       >
         <Grid />
