@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import type { Dayjs } from "dayjs";
+import "dayjs/locale/en-gb";
 
 export type WeekSelectorUIProps = {
   activeDateDayjs: Dayjs;
@@ -18,7 +19,7 @@ export const WeekSelectorUI = ({
         display: "flex",
       }}
     >
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
         <DatePicker
           label={"week"}
           value={activeDateDayjs}

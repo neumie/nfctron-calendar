@@ -7,6 +7,7 @@ import {
   LocalizationProvider,
   TimePicker,
 } from "@mui/x-date-pickers";
+import "dayjs/locale/en-gb";
 import { TwitterPicker as ColorPicker } from "react-color";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
@@ -116,7 +117,7 @@ export const EventEditorUI = ({
           </IconButton>
         )}
       </Box>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
         {/* FROM DATE PICKER */}
         <Box
           sx={{

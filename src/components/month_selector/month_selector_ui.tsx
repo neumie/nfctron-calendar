@@ -4,6 +4,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
 import { ShiftDirection } from "./../../utils/utils";
 import type { Dayjs } from "dayjs";
+import "dayjs/locale/en-gb";
 
 export type MonthSelectorUIProps = {
   activeDateDayjs: Dayjs;
@@ -26,7 +27,7 @@ export const MonthSelectorUI = ({
         <ArrowUpward />
       </IconButton>
 
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
         <DatePicker
           label={"year and month"}
           value={activeDateDayjs}
