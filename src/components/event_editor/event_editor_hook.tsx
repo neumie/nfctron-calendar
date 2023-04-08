@@ -2,7 +2,8 @@ import { useCalendarContext } from './../../containers/calendar/calendar_context
 import type { Dayjs } from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { ColorResult } from 'react-color';
-import { combineDates, findEvent, Event, removeEvent } from './../../utils/utils';
+import { findEvent, Event, removeEvent } from './../../utils/utils';
+import { combineDates } from '../../utils/date';
 import dayjs from 'dayjs';
 
 export const useEventEditor = () => {
