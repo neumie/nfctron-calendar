@@ -6,5 +6,15 @@ export type LegendEventsUIProps = {
 };
 
 export const LegendEventsUI = ({ events }: LegendEventsUIProps) => {
-  return <Box>{events}</Box>;
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+      }}
+    >
+      {events}
+    </Box>
+  );
 };

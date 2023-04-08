@@ -1,10 +1,10 @@
 import { Box, IconButton } from "@mui/material";
-import { Delete, Delete as DeleteIcon } from "@mui/icons-material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 
 export type LegendEventUIProps = {
   title: string;
-  from: Date;
-  duration: string;
+  from: string;
+  to: string;
   color: string;
   onDelete: () => void;
   onClick: () => void;
@@ -13,7 +13,7 @@ export type LegendEventUIProps = {
 export const LegendEventUI = ({
   title,
   from,
-  duration,
+  to,
   color,
   onDelete,
   onClick,
@@ -21,11 +21,12 @@ export const LegendEventUI = ({
   return (
     <Box
       sx={{
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "1fr 2fr 1fr",
         gap: 2,
-        minHeight: "60px",
         borderLeft: 5,
         borderColor: color,
+        padding: 1,
       }}
       onClick={onClick}
     >
@@ -35,13 +36,22 @@ export const LegendEventUI = ({
           flexDirection: "column",
         }}
       >
-        <Box>From</Box>
-        <Box>{duration}</Box>
+        <Box>{from}</Box>
+        <Box>{to}</Box>
       </Box>
-      {title}
-      <IconButton onClick={onDelete} aria-label="delete">
-        <DeleteIcon />
-      </IconButton>
+      <Box
+        sx={{
+          overflowWrap: "break-word",
+          minWidth: 0,
+        }}
+      >
+        {title}
+      </Box>
+      <Box>
+        <IconButton onClick={onDelete} aria-label="delete">
+          <DeleteIcon />
+        </IconButton>
+      </Box>
     </Box>
   );
 };

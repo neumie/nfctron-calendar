@@ -209,3 +209,10 @@ export const shiftMonth = (date: Date, direction: ShiftDirection): Date => {
 
   return new Date(newYear, newMonth, date.getDate());
 };
+
+export const convertDateToHoursMinutes = (time: Date): string => {
+  const hours = padToTwoDigits(time.getHours());
+  const minutes = padToTwoDigits(time.getMinutes());
+
+  return `${hours}:${minutes}`;
+};

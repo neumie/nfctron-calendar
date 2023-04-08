@@ -1,8 +1,7 @@
 import {
-  convertMsToString,
-  getDateDifference,
   loadEvent,
   removeEvent,
+  convertDateToHoursMinutes,
 } from "../../../../utils/utils";
 import { LegendEventUI } from "./legend_event_ui";
 import { Event } from "../../../../utils/utils";
@@ -15,8 +14,9 @@ export type LegendEventProps = {
 export const LegendEvent = ({ event }: LegendEventProps) => {
   const { setCalendarState } = useLegendEvent();
   const { id, title, color, from, to } = event;
-  const duration = getDateDifference(from, to);
-  const durationString = convertMsToString(duration);
+
+  const fromString = convertDateToHoursMinutes(from);
+  const toString = convertDateToHoursMinutes(to);
 
   const handleDelete = () => {
     removeEvent(setCalendarState, id);
@@ -29,8 +29,8 @@ export const LegendEvent = ({ event }: LegendEventProps) => {
   return (
     <LegendEventUI
       title={title}
-      from={from}
-      duration={durationString}
+      from={fromString}
+      to={toString}
       color={color}
       onDelete={handleDelete}
       onClick={handleClick}
