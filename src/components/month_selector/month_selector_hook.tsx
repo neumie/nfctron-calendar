@@ -6,7 +6,9 @@ export const useMonthSelector = () => {
   const { setCalendarState, activeDate } = useCalendarContext();
 
   const handleMonthChange = (newDateDayjs: Dayjs | null) => {
-    newDateDayjs && setCalendarState({ activeDate: newDateDayjs.toDate() });
+    const newDate = newDateDayjs?.toDate();
+    if (!newDate?.getTime()) return;
+    newDate && setCalendarState({ activeDate: newDate });
   };
 
   const handleMonthShift = (direction: ShiftDirection) => {

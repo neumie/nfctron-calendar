@@ -5,7 +5,9 @@ export const useWeekSelector = () => {
   const { setCalendarState, activeDate } = useCalendarContext();
 
   const handleWeekChange = (newDateDayjs: Dayjs | null) => {
-    newDateDayjs && setCalendarState({ activeDate: newDateDayjs.toDate() });
+    const newDate = newDateDayjs?.toDate();
+    if (!newDate?.getTime()) return;
+    newDate && setCalendarState({ activeDate: newDate });
   };
 
   return {
