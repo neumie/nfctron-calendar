@@ -11,8 +11,7 @@ export const HeaderUI = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingLeft: "2em",
-        paddingRight: "2em",
+        padding: "1em 2em",
       }}
     >
       <TodayButton />

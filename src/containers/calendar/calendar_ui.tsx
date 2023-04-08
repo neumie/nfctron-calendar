@@ -17,7 +17,7 @@ export const CalendarUI = () => {
         height: "100vh",
         display: "grid",
         gap: "1em",
-        gridTemplateRows: "1fr 6fr",
+        gridTemplateRows: "auto 6fr",
         gridTemplateColumns: "3fr 1fr",
       }}
     >
