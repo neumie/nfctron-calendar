@@ -14,7 +14,9 @@ export const useWeekGridCell = (date: Date) => {
 
   const filteredEvents: Event[] = filterEventsByDate(events, date);
   const eventElements = filteredEvents.map(({ id, title, color, from, to }) => {
-    return <WeekGridCellEvent key={id} title={title} color={color} from={from} to={to} />;
+    return (
+      <WeekGridCellEvent key={id} title={title} color={color} date={date} from={from} to={to} />
+    );
   });
 
   return {
