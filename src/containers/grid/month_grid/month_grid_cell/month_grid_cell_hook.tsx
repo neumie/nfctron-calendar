@@ -1,4 +1,5 @@
-import { datesAreSameDay, filterEventsByDate, Event } from '../../../../utils/utils';
+import { filterEventsByDate, Event } from '../../../../utils/utils';
+import { datesAreSameDay } from '../../../../utils/date';
 import { useCalendarContext } from '../../../calendar/calendar_context';
 import { useTheme } from '@mui/material/styles';
 import { MonthGridCellEvent } from './month_grid_cell_event/month_grid_cell_event';
