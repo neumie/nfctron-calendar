@@ -47,7 +47,13 @@ export const MonthGridCellUI = ({
       },
     ]}
   >
-    {month} {day}
+    <Box
+      sx={{
+        marginLeft: 1,
+      }}
+    >
+      {month} {day}
+    </Box>
     {events}
   </Box>
 );
