@@ -2,18 +2,6 @@ import { Box } from '@mui/material';
 import { Theme, alpha } from '@mui/material';
 import React from 'react';
 
-const styles = {
-  container: {
-    border: 0.5,
-    borderColor: 'grey.300',
-    minWidth: 0,
-    overflow: 'hidden',
-    display: 'grid',
-    gridTemplateRows: 'repeat(48, 1fr)',
-    gridAutoColumns: '1fr',
-  },
-};
-
 export type WeekGridCellUIProps = {
   events: React.ReactNode;
   onClick: (event: React.MouseEvent) => void;
@@ -21,16 +9,24 @@ export type WeekGridCellUIProps = {
   selected: boolean;
 };
 
-export const WeekGridCellUI = ({ events, onClick, selected, theme }: WeekGridCellUIProps) => (
-  <Box
-    onClick={onClick}
-    sx={[
-      styles.container,
-      selected && {
-        backgroundColor: alpha(theme.palette.primary.main, 0.2),
-      },
-    ]}
-  >
-    {events}
-  </Box>
-);
+export const WeekGridCellUI = ({ events, onClick, selected, theme }: WeekGridCellUIProps) => {
+  const styles = {
+    container: {
+      border: 0.5,
+      borderColor: 'grey.300',
+      minWidth: 0,
+      overflow: 'hidden',
+      display: 'grid',
+      gridTemplateRows: 'repeat(48, 1fr)',
+      gridAutoColumns: '1fr',
+    },
+    selected: {
+      backgroundColor: alpha(theme.palette.primary.main, 0.2),
+    },
+  };
+  return (
+    <Box onClick={onClick} sx={[styles.container, selected && styles.selected]}>
+      {events}
+    </Box>
+  );
+};

@@ -26,6 +26,9 @@ const styles = {
   timePicker: {
     width: '100px',
   },
+  button: {
+    marginTop: 1.5,
+  },
 };
 
 export type EventEditorUIProps = {
@@ -61,34 +64,16 @@ export const EventEditorUI = ({
 }: EventEditorUIProps) => {
   const buttonGroup = {
     add: (
-      <IconButton
-        sx={{
-          marginTop: 1.5,
-        }}
-        onClick={onEventAdd}
-        aria-label='add event'
-      >
+      <IconButton sx={styles.button} onClick={onEventAdd} aria-label='add event'>
         <AddIcon />
       </IconButton>
     ),
     edit: (
       <>
-        <IconButton
-          sx={{
-            marginTop: 1.5,
-          }}
-          onClick={onEventEdit}
-          aria-label='edit event'
-        >
+        <IconButton sx={styles.button} onClick={onEventEdit} aria-label='edit event'>
           <EditIcon />
         </IconButton>
-        <IconButton
-          sx={{
-            marginTop: 1.5,
-          }}
-          onClick={onExitEditMode}
-          aria-label='exit editing mode'
-        >
+        <IconButton sx={styles.button} onClick={onExitEditMode} aria-label='exit editing mode'>
           <CloseIcon />
         </IconButton>
       </>

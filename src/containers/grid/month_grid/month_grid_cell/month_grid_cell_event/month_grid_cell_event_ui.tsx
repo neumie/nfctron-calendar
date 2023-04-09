@@ -5,15 +5,15 @@ export type MonthGridCellEventUIProps = {
   color: string;
 };
 
-export const MonthGridCellEventUI = ({ title, color }: MonthGridCellEventUIProps) => (
-  <Box
-    sx={{
+export const MonthGridCellEventUI = ({ title, color }: MonthGridCellEventUIProps) => {
+  const styles = {
+    container: {
       backgroundColor: color,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-    }}
-  >
-    {title}
-  </Box>
-);
+    },
+  };
+
+  return <Box sx={styles.container}>{title}</Box>;
+};

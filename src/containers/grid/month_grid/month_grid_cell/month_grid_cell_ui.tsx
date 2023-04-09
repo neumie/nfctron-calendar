@@ -12,19 +12,6 @@ export type MonthGridCellUIProps = {
   events: React.ReactNode;
 };
 
-const styles = {
-  container: {
-    minWidth: 0,
-    border: 0.5,
-    borderColor: 'grey.300',
-    overflow: 'hidden',
-  },
-  today: {
-    borderTopWidth: '5px',
-    borderTopColor: 'primary.main',
-  },
-};
-
 export const MonthGridCellUI = ({
   today,
   selected,
@@ -33,27 +20,43 @@ export const MonthGridCellUI = ({
   theme,
   onClick,
   events,
-}: MonthGridCellUIProps) => (
-  <Box
-    onClick={onClick}
-    sx={[
-      styles.container,
-      today && styles.today,
-      !today && {
-        paddingTop: '5px',
-      },
-      selected && {
-        backgroundColor: alpha(theme.palette.primary.main, 0.2),
-      },
-    ]}
-  >
+}: MonthGridCellUIProps) => {
+  const styles = {
+    container: {
+      minWidth: 0,
+      border: 0.5,
+      borderColor: 'grey.300',
+      overflow: 'hidden',
+    },
+    today: {
+      borderTopWidth: '5px',
+      borderTopColor: 'primary.main',
+    },
+    notToday: {
+      paddingTop: '5px',
+    },
+    selected: {
+      backgroundColor: alpha(theme.palette.primary.main, 0.2),
+    },
+    time: {
+      marginLeft: 1,
+    },
+  };
+
+  return (
     <Box
-      sx={{
-        marginLeft: 1,
-      }}
+      onClick={onClick}
+      sx={[
+        styles.container,
+        today && styles.today,
+        !today && styles.notToday,
+        selected && styles.selected,
+      ]}
     >
-      {month} {day}
+      <Box sx={styles.time}>
+        {month} {day}
+      </Box>
+      {events}
     </Box>
-    {events}
-  </Box>
-);
+  );
+};

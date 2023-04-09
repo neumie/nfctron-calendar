@@ -6,6 +6,14 @@ import { ShiftDirection } from './../../utils/date';
 import type { Dayjs } from 'dayjs';
 import 'dayjs/locale/en-gb';
 
+const styles = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1,
+  },
+};
+
 export type MonthSelectorUIProps = {
   activeDateDayjs: Dayjs;
   onDateChange: (newDateDayjs: Dayjs | null) => void;
@@ -17,13 +25,7 @@ export const MonthSelectorUI = ({
   onDateChange,
   onDateShift,
 }: MonthSelectorUIProps) => (
-  <Box
-    sx={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 1,
-    }}
-  >
+  <Box sx={styles.container}>
     <Box>
       <IconButton onClick={() => onDateShift('backward')} aria-label='down'>
         <ArrowDownward />
