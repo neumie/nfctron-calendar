@@ -3,12 +3,20 @@ import { Event, removeEvent } from '../../../../utils/utils';
 import { convertDateToHoursMinutes } from '../../../../utils/date';
 
 export const useLegendEvent = (event: Event) => {
-  const { setCalendarState, events } = useCalendarContext();
+  const { setCalendarState, events, activeDate } = useCalendarContext();
 
   const { id, from, to } = event;
 
-  const fromString = convertDateToHoursMinutes(from);
-  const toString = convertDateToHoursMinutes(to);
+  let fromString = convertDateToHoursMinutes(from);
+  let toString = convertDateToHoursMinutes(to);
+  if (activeDate.getDate() > from.getDate()) {
+    const fromDay = from.toLocaleString('en-gb', { weekday: 'short' });
+    fromString = `${fromDay} ${fromString}`;
+  }
+  if (activeDate.getDate() < to.getDate()) {
+    const toDay = to.toLocaleString('en-gb', { weekday: 'short' });
+    toString = `${toDay} ${toString}`;
+  }
 
   const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();

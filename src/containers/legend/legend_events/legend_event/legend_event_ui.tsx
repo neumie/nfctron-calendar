@@ -34,6 +34,7 @@ export const LegendEventUI = ({
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        whiteSpace: 'nowrap',
       }}
     >
       <Box>{from}</Box>
