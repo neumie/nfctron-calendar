@@ -16,7 +16,7 @@ const styles = {
   editor: {
     display: 'flex',
     justifyContent: 'center',
-    paddingBottom: 2,
+    padding: 2,
   },
 };
 

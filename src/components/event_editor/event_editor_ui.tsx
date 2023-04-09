@@ -107,7 +107,7 @@ export const EventEditorUI = ({
       <Box sx={styles.topRow}>
         <TextField
           sx={{
-            width: '200px',
+            width: '180px',
           }}
           id='title'
           label='event name'
