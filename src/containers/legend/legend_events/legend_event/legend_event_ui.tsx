@@ -34,7 +34,10 @@ export const LegendEventUI = ({
       whiteSpace: 'nowrap',
     },
     title: {
-      overflowWrap: 'break-word',
+      wordBreak: 'break-word',
+    },
+    delete: {
+      marginLeft: 'auto',
     },
   };
 
@@ -45,7 +48,7 @@ export const LegendEventUI = ({
         <Box>{to}</Box>
       </Box>
       <Box sx={styles.title}>{title}</Box>
-      <Box>
+      <Box sx={styles.delete}>
         <IconButton onClick={onDelete} aria-label='delete'>
           <DeleteIcon />
         </IconButton>

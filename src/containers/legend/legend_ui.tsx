@@ -24,6 +24,7 @@ export const LegendUI = () => {
   return (
     <Box component='section' sx={styles.container}>
       <LegendHeader />
+
       <Box sx={styles.events}>
         <LegendEvents />
       </Box>

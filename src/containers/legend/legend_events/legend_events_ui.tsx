@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 const styles = {
   container: {
-    maxWidth: 0,
+    maxWidth: '100%',
     display: 'flex',
     flexDirection: 'column',
     gap: 1,

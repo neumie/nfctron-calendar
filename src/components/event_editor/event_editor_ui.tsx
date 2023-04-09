@@ -7,8 +7,6 @@ import 'dayjs/locale/en-gb';
 import { TwitterPicker as ColorPicker } from 'react-color';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
-import React from 'react';
-import { ColorResult } from 'react-color';
 import { EventState } from './event_editor_hook';
 
 const styles = {

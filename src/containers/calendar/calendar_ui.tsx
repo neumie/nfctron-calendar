@@ -24,6 +24,7 @@ const styles = {
     boxShadow: 2,
   },
   legend: {
+    maxWidth: '315px',
     gridRow: '1 / -1',
     gridColumn: '-2',
     display: 'flex',
