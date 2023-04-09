@@ -61,12 +61,12 @@ const getEventsFromStorage = (): Event[] => {
   const eventsPayload = localStorage.getItem('events');
   if (!eventsPayload) return [];
 
-  let events: Event[] = JSON.parse(eventsPayload);
-  events = events.map((event) => {
+  const storageEvents: Event[] = JSON.parse(eventsPayload);
+  const transformedStorageEvents = storageEvents.map((event) => {
     const from = new Date(event.from);
     const to = new Date(event.to);
     return { ...event, from, to };
   });
 
-  return events;
+  return transformedStorageEvents;
 };
