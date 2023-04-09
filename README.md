@@ -85,6 +85,7 @@ live demo: <a href="https://neumie-calendar.netlify.app/" target="_blank">link</
 ## Features
 
 * fine tuned for desktops, but still usable on smaller devices
+* events are also stored in localStorage
 
 ### Header
 * "Today" button, which scrolls to current day
