@@ -4,7 +4,7 @@ import { WeekGridTime } from './week_grid_time/week_grid_time';
 
 const styles = {
   container: {
-    overflow: 'scroll',
+    overflowY: 'scroll',
     height: '100%',
     display: 'grid',
     gridTemplateColumns: '50px 1fr',
