@@ -1,6 +1,6 @@
 import { useCalendarContext } from './../../containers/calendar/calendar_context';
 import { Dayjs, isDayjs } from 'dayjs';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Event } from './../../utils/utils';
 import { combineDates } from '../../utils/date';
 import dayjs from 'dayjs';
@@ -48,13 +48,15 @@ export const useEventEditor = () => {
     };
   };
 
-  const handleEventAdd = () => {
+  const handleEventAdd = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     const newEvent = makeEventObject();
     setCalendarState({ events: [...events, newEvent] });
     resetEditor();
   };
 
-  const handleEventEdit = () => {
+  const handleEventEdit = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     const editedEvents = events.map((event): Event => {
       if (selectedEventId !== event.id) return event;
       const eventFrom = combineDates(eventState.fromDate, eventState.fromTime);

@@ -32,7 +32,7 @@ const styles = {
 };
 
 export type EventEditorUIProps = {
-  onEventAdd: () => void;
+  onEventAdd: (e: React.MouseEvent<HTMLElement>) => void;
   eventTitle: string;
   eventFromDateDayjs: Dayjs;
   eventFromTimeDayjs: Dayjs;
@@ -40,7 +40,7 @@ export type EventEditorUIProps = {
   eventToTimeDayjs: Dayjs;
   eventColor: string;
   selectedEventId: string;
-  onEventEdit: () => void;
+  onEventEdit: (e: React.MouseEvent<HTMLElement>) => void;
   onExitEditMode: () => void;
   onFormStateChange: <T extends keyof EventState>(
     field: T,
@@ -64,13 +64,23 @@ export const EventEditorUI = ({
 }: EventEditorUIProps) => {
   const buttonGroup = {
     add: (
-      <IconButton sx={styles.button} onClick={onEventAdd} aria-label='add event'>
+      <IconButton
+        type='submit'
+        sx={styles.button}
+        onClick={(e) => onEventAdd(e)}
+        aria-label='add event'
+      >
         <AddIcon />
       </IconButton>
     ),
     edit: (
       <>
-        <IconButton sx={styles.button} onClick={onEventEdit} aria-label='edit event'>
+        <IconButton
+          type='submit'
+          sx={styles.button}
+          onClick={(e) => onEventEdit(e)}
+          aria-label='edit event'
+        >
           <EditIcon />
         </IconButton>
         <IconButton sx={styles.button} onClick={onExitEditMode} aria-label='exit editing mode'>
