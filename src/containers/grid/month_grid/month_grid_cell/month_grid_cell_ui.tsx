@@ -26,14 +26,16 @@ export const MonthGridCellUI = ({
     sx={[
       {
         minWidth: 0,
-        padding: '0.25em',
         border: 0.5,
         borderColor: 'grey.300',
         overflow: 'hidden',
       },
       today && {
-        borderTop: 4,
+        borderTopWidth: '5px',
         borderTopColor: 'primary.main',
+      },
+      !today && {
+        paddingTop: '5px',
       },
       selected && {
         backgroundColor: alpha(theme.palette.primary.main, 0.2),
