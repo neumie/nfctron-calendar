@@ -9,6 +9,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
 import React from 'react';
 import { ColorResult } from 'react-color';
+import { EventState } from './event_editor_hook';
 
 const styles = {
   container: {
@@ -32,39 +33,33 @@ const styles = {
 export type EventEditorUIProps = {
   onEventAdd: () => void;
   eventTitle: string;
-  onEventTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   eventFromDateDayjs: Dayjs;
-  onEventFromChange: (newEventFrom: Dayjs | null) => void;
   eventFromTimeDayjs: Dayjs;
-  onEventFromTimeChange: (newEventFromTime: Dayjs | null) => void;
   eventToDateDayjs: Dayjs;
-  onEventToChange: (newEventTo: Dayjs | null) => void;
   eventToTimeDayjs: Dayjs;
-  onEventToTimeChange: (newEventToTime: Dayjs | null) => void;
   eventColor: string;
-  onEventColorChange: (newEventColor: ColorResult) => void;
   selectedEventId: string;
   onEventEdit: () => void;
   onExitEditMode: () => void;
+  onFormStateChange: <T extends keyof EventState>(
+    field: T,
+    value: EventState[T] | Dayjs | null,
+    shouldLock?: boolean,
+  ) => void;
 };
 
 export const EventEditorUI = ({
   onEventAdd,
   eventTitle,
-  onEventTitleChange,
   eventFromDateDayjs,
-  onEventFromChange,
   eventFromTimeDayjs,
-  onEventFromTimeChange,
   eventToDateDayjs,
-  onEventToChange,
   eventToTimeDayjs,
-  onEventToTimeChange,
   eventColor,
-  onEventColorChange,
   selectedEventId,
   onEventEdit,
   onExitEditMode,
+  onFormStateChange,
 }: EventEditorUIProps) => {
   const buttonGroup = {
     add: (
@@ -113,7 +108,7 @@ export const EventEditorUI = ({
           label='event name'
           variant='standard'
           value={eventTitle}
-          onChange={onEventTitleChange}
+          onChange={(e) => onFormStateChange('title', e.target.value)}
         />
         {selectedEventId ? buttonGroup.edit : buttonGroup.add}
       </Box>
@@ -129,12 +124,12 @@ export const EventEditorUI = ({
             sx={styles.datePicker}
             label='From'
             value={eventFromDateDayjs}
-            onChange={onEventFromChange}
+            onChange={(e) => onFormStateChange('fromDate', e, true)}
           />
           <TimePicker
             sx={styles.timePicker}
             value={eventFromTimeDayjs}
-            onChange={onEventFromTimeChange}
+            onChange={(e) => onFormStateChange('fromTime', e, false)}
           />
         </Box>
 
@@ -149,12 +144,12 @@ export const EventEditorUI = ({
             sx={styles.datePicker}
             label='To'
             value={eventToDateDayjs}
-            onChange={onEventToChange}
+            onChange={(e) => onFormStateChange('toDate', e, true)}
           />
           <TimePicker
             sx={styles.timePicker}
             value={eventToTimeDayjs}
-            onChange={onEventToTimeChange}
+            onChange={(e) => onFormStateChange('toTime', e, false)}
           />
         </Box>
       </LocalizationProvider>
@@ -165,7 +160,7 @@ export const EventEditorUI = ({
           marginLeft: 0.5,
         }}
       >
-        <ColorPicker color={eventColor} onChange={onEventColorChange} />
+        <ColorPicker color={eventColor} onChange={(e) => onFormStateChange('color', e.hex)} />
       </Box>
     </Box>
   );

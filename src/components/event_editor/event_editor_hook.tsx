@@ -1,10 +1,23 @@
 import { useCalendarContext } from './../../containers/calendar/calendar_context';
-import type { Dayjs } from 'dayjs';
-import React, { useEffect, useState } from 'react';
-import { ColorResult } from 'react-color';
+import { Dayjs, isDayjs } from 'dayjs';
+import { useEffect, useState } from 'react';
 import { Event } from './../../utils/utils';
 import { combineDates } from '../../utils/date';
 import dayjs from 'dayjs';
+
+const transformDayjs = <T extends keyof EventState>(value: EventState[T] | Dayjs | null) => {
+  if (isDayjs(value)) return value.toDate();
+  return value;
+};
+
+export type EventState = {
+  title: string;
+  fromDate: Date;
+  fromTime: Date;
+  toDate: Date;
+  toTime: Date;
+  color: string;
+};
 
 export const useEventEditor = () => {
   const { setCalendarState, activeDate, events, eventEditorLock, selectedEventId } =
@@ -63,7 +76,7 @@ export const useEventEditor = () => {
   };
 
   const resetEditor = () => {
-    setCalendarState({ selectedEventId: '' });
+    setCalendarState({ selectedEventId: '', eventEditorLock: false });
     setEventState({
       title: '',
       fromDate: activeDate,
@@ -74,35 +87,19 @@ export const useEventEditor = () => {
     });
   };
 
+  const handleFormStateChange = <T extends keyof EventState>(
+    field: T,
+    value: EventState[T] | Dayjs | null,
+    shouldLock?: boolean,
+  ) => {
+    const transformedValue = transformDayjs(value);
+    shouldLock && setCalendarState({ eventEditorLock: true });
+    transformedValue && setEventState((prev) => ({ ...prev, [field]: transformedValue }));
+  };
+
   const handleEventAdd = () => addEvent();
   const handleEventEdit = () => editEvent();
   const handleExitEditMode = () => resetEditor();
-
-  const handleEventTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEventState((prev) => ({ ...prev, title: event.target.value }));
-  };
-
-  const handleEventFromChange = (newEventFromDate: Dayjs | null) => {
-    setCalendarState({ eventEditorLock: true });
-    newEventFromDate && setEventState((prev) => ({ ...prev, fromDate: newEventFromDate.toDate() }));
-  };
-
-  const handleEventFromTimeChange = (newEventFromTime: Dayjs | null) => {
-    newEventFromTime && setEventState((prev) => ({ ...prev, fromTime: newEventFromTime.toDate() }));
-  };
-
-  const handleEventToChange = (newEventToDate: Dayjs | null) => {
-    setCalendarState({ eventEditorLock: true });
-    newEventToDate && setEventState((prev) => ({ ...prev, toDate: newEventToDate.toDate() }));
-  };
-
-  const handleEventToTimeChange = (newEventToTime: Dayjs | null) => {
-    newEventToTime && setEventState((prev) => ({ ...prev, toTime: newEventToTime.toDate() }));
-  };
-
-  const handleEventColorChange = (newEventColor: ColorResult) => {
-    setEventState((prev) => ({ ...prev, color: newEventColor.hex }));
-  };
 
   useEffect(() => {
     if (eventEditorLock) return;
@@ -132,18 +129,13 @@ export const useEventEditor = () => {
     selectedEventId,
     handleEventAdd,
     eventTitle,
-    handleEventTitleChange,
     eventFromDateDayjs,
-    handleEventFromChange,
     eventFromTimeDayjs,
-    handleEventFromTimeChange,
     eventToDateDayjs,
-    handleEventToChange,
     eventToTimeDayjs,
-    handleEventToTimeChange,
     eventColor,
-    handleEventColorChange,
     handleEventEdit,
     handleExitEditMode,
+    handleFormStateChange,
   };
 };
