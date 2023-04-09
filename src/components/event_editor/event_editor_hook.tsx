@@ -95,7 +95,7 @@ export const useEventEditor = () => {
   ) => {
     const transformedValue = transformDayjs(value);
     shouldLock && setCalendarState({ eventEditorLock: true });
-    transformedValue && setEventState((prev) => ({ ...prev, [field]: transformedValue }));
+    setEventState((prev) => ({ ...prev, [field]: transformedValue }));
   };
 
   const handleExitEditMode = () => resetEditor();
