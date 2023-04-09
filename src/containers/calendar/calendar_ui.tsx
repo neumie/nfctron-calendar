@@ -5,7 +5,7 @@ import { Legend } from '../legend/legend';
 
 const styles = {
   container: {
-    width: '100vw',
+    width: '100%',
     height: {
       xs: 'auto',
       md: '100vh',
