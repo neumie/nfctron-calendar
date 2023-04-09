@@ -76,13 +76,14 @@ export const useEventEditor = () => {
   };
 
   const resetEditor = () => {
+    const currentTime = new Date();
     setCalendarState({ selectedEventId: '', eventEditorLock: false });
     setEventState({
       title: '',
       fromDate: activeDate,
-      fromTime: activeDate,
+      fromTime: currentTime,
       toDate: activeDate,
-      toTime: activeDate,
+      toTime: currentTime,
       color: '#0693E3',
     });
   };
