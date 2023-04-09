@@ -3,6 +3,7 @@ import { datesAreSameDay } from '../../../../utils/date';
 import { useCalendarContext } from '../../../calendar/calendar_context';
 import { useTheme } from '@mui/material/styles';
 import { MonthGridCellEvent } from './month_grid_cell_event/month_grid_cell_event';
+import { MonthGridCellElipsis } from './month_grid_cell_event/month_grid_cell_elipsis/month_grid_cell_elipsis';
 
 export const useMonthGridCell = (date: Date) => {
   const { setCalendarState, activeDate, events } = useCalendarContext();
@@ -13,9 +14,12 @@ export const useMonthGridCell = (date: Date) => {
   const day: number = date.getDate();
 
   const filteredEvents: Event[] = filterEventsByDate(events, date);
-  const eventElements = filteredEvents.map(({ id, title, color }) => {
+  const allEventElements = filteredEvents.map(({ id, title, color }) => {
     return <MonthGridCellEvent key={id} title={title} color={color} />;
   });
+
+  let eventElements = allEventElements.slice(0, 3);
+  allEventElements.length > 3 && eventElements.push(<MonthGridCellElipsis key={-1} />);
 
   //Display month if it's the first day of the month
   let month: string = '';
