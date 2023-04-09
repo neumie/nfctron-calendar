@@ -12,7 +12,7 @@ export const EventEditor = () => {
     eventToTimeDayjs,
     eventColor,
     handleEventEdit,
-    handleExitEditMode,
+    handleEditorReset,
     handleFormStateChange,
   } = useEventEditor();
 
@@ -27,7 +27,7 @@ export const EventEditor = () => {
       eventColor={eventColor}
       selectedEventId={selectedEventId}
       onEventEdit={handleEventEdit}
-      onExitEditMode={handleExitEditMode}
+      onResetEditor={handleEditorReset}
       onFormStateChange={handleFormStateChange}
     />
   );

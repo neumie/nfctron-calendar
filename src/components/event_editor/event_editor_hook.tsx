@@ -100,7 +100,7 @@ export const useEventEditor = () => {
     setEventState((prev) => ({ ...prev, [field]: transformedValue }));
   };
 
-  const handleExitEditMode = () => resetEditor();
+  const handleEditorReset = () => resetEditor();
 
   useEffect(() => {
     if (eventEditorLock) return;
@@ -136,7 +136,7 @@ export const useEventEditor = () => {
     eventToTimeDayjs,
     eventColor,
     handleEventEdit,
-    handleExitEditMode,
+    handleEditorReset,
     handleFormStateChange,
   };
 };

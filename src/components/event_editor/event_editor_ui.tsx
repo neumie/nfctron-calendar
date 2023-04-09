@@ -41,7 +41,7 @@ export type EventEditorUIProps = {
   eventColor: string;
   selectedEventId: string;
   onEventEdit: (e: React.MouseEvent<HTMLElement>) => void;
-  onExitEditMode: () => void;
+  onResetEditor: () => void;
   onFormStateChange: <T extends keyof EventState>(
     field: T,
     value: EventState[T] | Dayjs | null,
@@ -59,7 +59,7 @@ export const EventEditorUI = ({
   eventColor,
   selectedEventId,
   onEventEdit,
-  onExitEditMode,
+  onResetEditor,
   onFormStateChange,
 }: EventEditorUIProps) => {
   const buttonGroup = {
@@ -83,9 +83,6 @@ export const EventEditorUI = ({
         >
           <EditIcon />
         </IconButton>
-        <IconButton sx={styles.button} onClick={onExitEditMode} aria-label='exit editing mode'>
-          <CloseIcon />
-        </IconButton>
       </>
     ),
   };
@@ -104,6 +101,9 @@ export const EventEditorUI = ({
           onChange={(e) => onFormStateChange('title', e.target.value)}
         />
         {selectedEventId ? buttonGroup.edit : buttonGroup.add}
+        <IconButton sx={styles.button} onClick={onResetEditor} aria-label='exit editing mode'>
+          <CloseIcon />
+        </IconButton>
       </Box>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
         {/* FROM DATE PICKER */}
