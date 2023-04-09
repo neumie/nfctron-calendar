@@ -2,21 +2,27 @@ import { useCalendarContext } from './../../../calendar/calendar_context';
 import { Event } from '../../../../utils/utils';
 import { convertDateToHoursMinutes } from '../../../../utils/date';
 
+const prependFrom = (activeDate: Date, from: Date, fromTimeString: string) => {
+  if (!(activeDate.getDate() > from.getDate())) return fromTimeString;
+  const fromDay = from.toLocaleString('en-gb', { weekday: 'short' });
+  return `${fromDay} ${fromTimeString}`;
+};
+
+const prependTo = (activeDate: Date, to: Date, toTimeString: string) => {
+  if (!(activeDate.getDate() < to.getDate())) return toTimeString;
+  const toDay = to.toLocaleString('en-gb', { weekday: 'short' });
+  return `${toDay} ${toTimeString}`;
+};
+
 export const useLegendEvent = (event: Event) => {
   const { setCalendarState, events, activeDate } = useCalendarContext();
 
   const { id, from, to } = event;
 
-  let fromString = convertDateToHoursMinutes(from);
-  let toString = convertDateToHoursMinutes(to);
-  if (activeDate.getDate() > from.getDate()) {
-    const fromDay = from.toLocaleString('en-gb', { weekday: 'short' });
-    fromString = `${fromDay} ${fromString}`;
-  }
-  if (activeDate.getDate() < to.getDate()) {
-    const toDay = to.toLocaleString('en-gb', { weekday: 'short' });
-    toString = `${toDay} ${toString}`;
-  }
+  const fromTimeString = convertDateToHoursMinutes(from);
+  const toTimeString = convertDateToHoursMinutes(to);
+  const fromString = prependFrom(activeDate, from, fromTimeString);
+  const toString = prependTo(activeDate, to, toTimeString);
 
   const removeEvent = () => {
     const filteredEvents = events.filter((event) => event.id !== id);
@@ -29,12 +35,12 @@ export const useLegendEvent = (event: Event) => {
   };
 
   const handleClick = () => {
-    loadEventToEditor(id);
+    loadEventToEditor();
   };
 
-  const loadEventToEditor = (eventId: string) => {
+  const loadEventToEditor = () => {
     setCalendarState({
-      selectedEventId: eventId,
+      selectedEventId: id,
     });
   };
 

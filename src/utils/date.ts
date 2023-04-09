@@ -1,17 +1,17 @@
 export type ShiftDirection = "forward" | "backward";
 
+const checkDate = (month: number, year: number): number[] => {
+  if (month < 0) return [11, year-1] 
+  else if (month > 11) return [0, year+1]
+  return [month, year];
+}
+
 export const shiftMonth = (date: Date, direction: ShiftDirection): Date => {
   const monthIncrement = direction === "forward" ? 1 : -1;
 
-  let newMonth = date.getMonth() + monthIncrement;
-  let newYear = date.getFullYear();
-  if (newMonth < 0) {
-    newMonth = 11;
-    newYear--;
-  } else if (newMonth > 11) {
-    newMonth = 0;
-    newYear++;
-  }
+  const monthAfterShift = date.getMonth() + monthIncrement;
+  const year = date.getFullYear();
+  const [newMonth, newYear] = checkDate(monthAfterShift, year);
 
   return new Date(newYear, newMonth, date.getDate());
 };

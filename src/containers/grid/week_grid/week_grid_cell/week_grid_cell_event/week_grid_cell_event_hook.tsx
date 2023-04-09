@@ -1,21 +1,16 @@
-export const useWeekGridCellEvent = (date: Date, from: Date, to: Date) => {
-  let fromGrid;
-  if (date.getDate() > from.getDate()) {
-    fromGrid = 0;
-  } else {
-    let fromHours = from.getHours() * 2;
-    from.getMinutes() >= 30 && fromHours++;
-    fromGrid = fromHours;
-  }
+const getGridStart = (date: Date, from: Date): number => {
+  if (date.getDate() > from.getDate()) return 0;
+  return from.getHours() * 2 + Math.floor(from.getMinutes() / 30);
+};
 
-  let toGrid;
-  if (date.getDate() < to.getDate()) {
-    toGrid = 48;
-  } else {
-    let toHours = to.getHours() * 2;
-    to.getMinutes() >= 30 && toHours++;
-    toGrid = toHours;
-  }
+const getGridEnd = (date: Date, to: Date): number => {
+  if (date.getDate() < to.getDate()) return 48;
+  return to.getHours() * 2 + Math.floor(to.getMinutes() / 30);
+};
+
+export const useWeekGridCellEvent = (date: Date, from: Date, to: Date) => {
+  const fromGrid = getGridStart(date, from);
+  const toGrid = getGridEnd(date, to);
 
   return {
     fromGrid,

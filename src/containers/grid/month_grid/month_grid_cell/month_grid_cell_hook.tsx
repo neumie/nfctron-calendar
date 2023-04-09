@@ -18,14 +18,11 @@ export const useMonthGridCell = (date: Date) => {
     return <MonthGridCellEvent key={id} title={title} color={color} />;
   });
 
-  let eventElements = allEventElements.slice(0, 3);
+  const eventElements = allEventElements.slice(0, 3);
   allEventElements.length > 3 && eventElements.push(<MonthGridCellElipsis key={-1} />);
 
   //Display month if it's the first day of the month
-  let month: string = '';
-  if (day === 1) {
-    month = date.toLocaleString('default', { month: 'short' });
-  }
+  const month = getMonthString(day, date);
 
   const handleClick = (event: React.MouseEvent) => {
     setCalendarState({ activeDate: date });
@@ -43,4 +40,9 @@ export const useMonthGridCell = (date: Date) => {
     handleClick,
     eventElements,
   };
+};
+
+const getMonthString = (day: number, date: Date) => {
+  if (day !== 1) return '';
+  return date.toLocaleString('default', { month: 'short' });
 };
