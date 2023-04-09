@@ -48,13 +48,13 @@ export const useEventEditor = () => {
     };
   };
 
-  const addEvent = () => {
+  const handleEventAdd = () => {
     const newEvent = makeEventObject();
     setCalendarState({ events: [...events, newEvent] });
     resetEditor();
   };
 
-  const editEvent = () => {
+  const handleEventEdit = () => {
     const editedEvents = events.map((event): Event => {
       if (selectedEventId !== event.id) return event;
       const eventFrom = combineDates(eventState.fromDate, eventState.fromTime);
@@ -97,8 +97,6 @@ export const useEventEditor = () => {
     transformedValue && setEventState((prev) => ({ ...prev, [field]: transformedValue }));
   };
 
-  const handleEventAdd = () => addEvent();
-  const handleEventEdit = () => editEvent();
   const handleExitEditMode = () => resetEditor();
 
   useEffect(() => {
