@@ -10,7 +10,9 @@ export type WeekGridCellEventProps = {
 };
 
 export const WeekGridCellEvent = ({ date, title, color, from, to }: WeekGridCellEventProps) => {
-  const { fromGrid, toGrid } = useWeekGridCellEvent(date, from, to);
+  const { fromGrid, toGrid, theme } = useWeekGridCellEvent(date, from, to);
 
-  return <WeekGridCellEventUI title={title} color={color} from={fromGrid} to={toGrid} />;
+  return (
+    <WeekGridCellEventUI title={title} color={color} from={fromGrid} to={toGrid} theme={theme} />
+  );
 };
