@@ -16,5 +16,7 @@ export type MonthGridHeaderUIProps = {
 };
 
 export const MonthGridHeaderUI = ({ dayNames }: MonthGridHeaderUIProps) => (
-  <Box sx={styles.container}>{dayNames}</Box>
+  <Box component='header' sx={styles.container}>
+    {dayNames}
+  </Box>
 );

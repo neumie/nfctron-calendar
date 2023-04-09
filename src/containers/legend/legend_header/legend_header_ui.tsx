@@ -17,7 +17,7 @@ export type LegendHeaderUIProps = {
 
 export const LegendHeaderUI = ({ activeDateString }: LegendHeaderUIProps) => {
   return (
-    <Box sx={styles.container}>
+    <Box component='header' sx={styles.container}>
       <Typography variant='h5'>{activeDateString}</Typography>
     </Box>
   );

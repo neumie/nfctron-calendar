@@ -35,7 +35,7 @@ export type WeekGridUIProps = {
 
 export const WeekGridUI = ({ gridCells }: WeekGridUIProps) => {
   return (
-    <Box sx={styles.container}>
+    <Box component='section' sx={styles.container}>
       <Box sx={styles.time}>
         <WeekGridTime />
       </Box>

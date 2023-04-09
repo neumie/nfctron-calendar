@@ -16,5 +16,7 @@ export type WeekGridHeaderUIProps = {
 };
 
 export const WeekGridHeaderUI = ({ dayNames }: WeekGridHeaderUIProps) => (
-  <Box sx={styles.container}>{dayNames}</Box>
+  <Box component='header' sx={styles.container}>
+    {dayNames}
+  </Box>
 );

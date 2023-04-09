@@ -22,7 +22,7 @@ const styles = {
 
 export const LegendUI = () => {
   return (
-    <Box sx={styles.container}>
+    <Box component='section' sx={styles.container}>
       <LegendHeader />
       <Box sx={styles.events}>
         <LegendEvents />
