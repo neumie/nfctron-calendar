@@ -18,7 +18,7 @@ export type MonthGridUIProps = {
 };
 
 export const MonthGridUI = ({ gridCells, numberOfWeeks }: MonthGridUIProps) => (
-  <Box sx={styles.container}>
+  <Box component='section' sx={styles.container}>
     <MonthGridHeader />
 
     <Box
