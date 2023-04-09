@@ -1,4 +1,3 @@
-import { CalendarState } from "../containers/calendar/calendar_context";
 import { isDateInRange } from "./date";
 
 export const dayNames = [
@@ -11,6 +10,9 @@ export const dayNames = [
   "Sunday",
 ];
 
+/**
+ * Available grid views
+ */
 export enum GridViews {
   MONTH = "MONTH",
   WEEK = "WEEK",
@@ -24,6 +26,14 @@ export type Event = {
   color: string;
 };
 
+
+/**
+ * Filters events array and returns events that happen on supplied date.
+ * 
+ * @param events
+ * @param date 
+ * @returns events that happen on supplied date.
+ */
 export const filterEventsByDate = (events: Event[], date: Date): Event[] => {
   const found = events.filter((event) => {
     const from = new Date(event.from);
