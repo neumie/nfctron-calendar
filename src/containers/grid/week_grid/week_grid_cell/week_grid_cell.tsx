@@ -6,7 +6,14 @@ export type WeekGridCellProps = {
 };
 
 export const WeekGridCell = ({ date }: WeekGridCellProps) => {
-  const { eventElements, handleClick } = useWeekGridCell(date);
+  const { eventElements, handleClick, selected, theme } = useWeekGridCell(date);
 
-  return <WeekGridCellUI events={eventElements} onClick={handleClick} />;
+  return (
+    <WeekGridCellUI
+      events={eventElements}
+      onClick={handleClick}
+      selected={selected}
+      theme={theme}
+    />
+  );
 };

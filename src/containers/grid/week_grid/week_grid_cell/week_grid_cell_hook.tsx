@@ -1,9 +1,14 @@
+import { datesAreSameDay } from '../../../../utils/date';
 import { filterEventsByDate, Event } from '../../../../utils/utils';
+import { useTheme } from '@mui/material/styles';
 import { useCalendarContext } from '../../../calendar/calendar_context';
 import { WeekGridCellEvent } from './week_grid_cell_event/week_grid_cell_event';
 
 export const useWeekGridCell = (date: Date) => {
   const { setCalendarState, activeDate, events } = useCalendarContext();
+  const theme = useTheme();
+
+  const selected: boolean = datesAreSameDay(date, activeDate);
 
   const handleClick = (event: React.MouseEvent) => {
     setCalendarState({ activeDate: date });
@@ -22,5 +27,7 @@ export const useWeekGridCell = (date: Date) => {
   return {
     eventElements,
     handleClick,
+    selected,
+    theme,
   };
 };
