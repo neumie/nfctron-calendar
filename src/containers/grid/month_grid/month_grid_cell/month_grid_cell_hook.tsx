@@ -10,7 +10,6 @@ export const useMonthGridCell = (date: Date) => {
   const theme = useTheme();
 
   const selected: boolean = datesAreSameDay(date, activeDate);
-  if (selected) console.log(date.toDateString());
 
   const today: boolean = datesAreSameDay(date, new Date());
   const day: number = date.getDate();
