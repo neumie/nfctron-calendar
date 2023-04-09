@@ -35,7 +35,6 @@ export const LegendEventUI = ({
     },
     title: {
       overflowWrap: 'break-word',
-      minWidth: 0,
     },
   };
 
