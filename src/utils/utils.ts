@@ -32,14 +32,3 @@ export const filterEventsByDate = (events: Event[], date: Date): Event[] => {
   });
   return found;
 };
-
-export const removeEvent = (setCalendarState: (
-    state: Partial<Omit<CalendarState, "setCalendarState">>
-  ) => void, events: Event[], eventId: string) => {
-  events = events.filter(event => event.id !== eventId);
-  setCalendarState({ events: events });
-}
-
-export const findEvent = (events: Event[], eventId: string): Event | undefined => {
-  return events.find(event => event.id === eventId);
-}
