@@ -10,7 +10,7 @@ const styles = {
     display: 'grid',
     gap: '1em',
     gridTemplateRows: 'auto 6fr',
-    gridTemplateColumns: '3fr 1fr',
+    gridTemplateColumns: '3fr auto',
   },
   header: {
     gridRow: '1',
