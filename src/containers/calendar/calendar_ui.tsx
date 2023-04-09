@@ -6,27 +6,54 @@ import { Legend } from '../legend/legend';
 const styles = {
   container: {
     width: '100vw',
-    height: '100vh',
+    height: {
+      xs: 'auto',
+      md: '100vh',
+    },
     display: 'grid',
     gap: '1em',
-    gridTemplateRows: 'auto 6fr',
-    gridTemplateColumns: '3fr auto',
+    gridTemplateRows: {
+      xs: 'auto 75vh auto',
+      md: 'auto 6fr',
+    },
+    gridTemplateColumns: {
+      xs: '1fr',
+      md: '3fr auto',
+    },
   },
   header: {
     gridRow: '1',
-    gridColumn: '1 / -2',
+    gridColumn: {
+      xs: '1',
+      md: '1 / -2',
+    },
     boxShadow: 2,
   },
   grid: {
-    gridRow: '2 / -1',
-    gridColumn: '1 / -2',
+    gridRow: {
+      xs: '2',
+      md: '2 / -1',
+    },
+    gridColumn: {
+      xs: '1',
+      md: '1 / -2',
+    },
     minHeight: 0,
     boxShadow: 2,
   },
   legend: {
-    maxWidth: '315px',
-    gridRow: '1 / -1',
-    gridColumn: '-2',
+    maxWidth: {
+      xs: 'auto',
+      md: '315px',
+    },
+    gridRow: {
+      xs: '3',
+      md: '1 / -1',
+    },
+    gridColumn: {
+      xs: '1',
+      md: '-2',
+    },
     display: 'flex',
     flexDirection: 'column',
     boxShadow: 2,

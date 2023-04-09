@@ -6,8 +6,11 @@ import { Box } from '@mui/material';
 const styles = {
   container: {
     display: 'grid',
-    gridTemplateRows: 'auto 1fr auto',
-    height: '100vh',
+    gridTemplateRows: 'auto auto 1fr',
+    height: {
+      xs: 'auto',
+      md: '100vh',
+    },
   },
   events: {
     padding: 2,
@@ -25,12 +28,11 @@ export const LegendUI = () => {
     <Box component='section' sx={styles.container}>
       <LegendHeader />
 
-      <Box sx={styles.events}>
-        <LegendEvents />
-      </Box>
-
       <Box sx={styles.editor}>
         <EventEditor />
+      </Box>
+      <Box sx={styles.events}>
+        <LegendEvents />
       </Box>
     </Box>
   );
