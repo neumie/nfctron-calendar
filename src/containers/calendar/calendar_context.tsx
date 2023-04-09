@@ -12,12 +12,11 @@ export type CalendarState = {
   selectedEventId: string;
 };
 
-const defaultDate = new Date();
 const defaultState: CalendarState = {
   setCalendarState: () => {},
   events: [],
   activeGridView: GridViews.MONTH,
-  activeDate: defaultDate,
+  activeDate: new Date(),
   eventEditorLock: false,
   selectedEventId: '',
 };
