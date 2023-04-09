@@ -6,7 +6,7 @@ const styles = {
     width: '100%',
     height: '50px',
     display: 'grid',
-    gridTemplateColumns: '50px repeat(7, 1fr)',
+    gridTemplateColumns: '50px repeat(7, minmax(0, 1fr))',
     gridTemplateRows: '1fr',
   },
 };
