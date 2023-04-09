@@ -3,7 +3,7 @@ import { dayNames } from '../../../../utils/utils';
 
 export const useMonthGridHeader = () => {
   const dayNameElements = dayNames.map((dayName, index) => (
-    <Box sx={{ overflow: 'hidden' }} key={index}>
+    <Box sx={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }} key={index}>
       {dayName}
     </Box>
   ));

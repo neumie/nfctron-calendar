@@ -6,7 +6,16 @@ export const useWeekGridHeader = () => {
   const {} = useCalendarContext();
 
   const dayNameElements = dayNames.map((dayName, index) => (
-    <Box sx={{ border: 0.5, borderColor: 'grey.300', overflow: 'hidden' }} key={index}>
+    <Box
+      sx={{
+        border: 0.5,
+        borderColor: 'grey.300',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+      }}
+      key={index}
+    >
       {dayName}
     </Box>
   ));
