@@ -81,7 +81,7 @@ export const EventEditorUI = ({
   };
 
   return (
-    <Box sx={styles.container}>
+    <Box component='form' sx={styles.container}>
       <Box sx={styles.topRow}>
         <TextField
           sx={{
