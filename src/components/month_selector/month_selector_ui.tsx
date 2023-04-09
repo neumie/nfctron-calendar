@@ -22,8 +22,8 @@ export const MonthSelectorUI = ({
       display: 'flex',
     }}
   >
-    <IconButton onClick={() => onDateShift('forward')} aria-label='up'>
-      <ArrowUpward />
+    <IconButton onClick={() => onDateShift('backward')} aria-label='down'>
+      <ArrowDownward />
     </IconButton>
 
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
@@ -35,8 +35,8 @@ export const MonthSelectorUI = ({
       />
     </LocalizationProvider>
 
-    <IconButton onClick={() => onDateShift('backward')} aria-label='down'>
-      <ArrowDownward />
+    <IconButton onClick={() => onDateShift('forward')} aria-label='up'>
+      <ArrowUpward />
     </IconButton>
   </Box>
 );
