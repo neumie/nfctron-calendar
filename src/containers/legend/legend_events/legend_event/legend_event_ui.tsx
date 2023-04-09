@@ -21,6 +21,7 @@ export const LegendEventUI = ({
 }: LegendEventUIProps) => {
   const styles = {
     container: {
+      maxWidth: '450px',
       display: 'grid',
       gridTemplateColumns: '1fr 2fr 1fr',
       gap: 2,

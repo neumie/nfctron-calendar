@@ -55,6 +55,8 @@ const styles = {
       md: '-2',
     },
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'column',
     boxShadow: 2,
   },
