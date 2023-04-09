@@ -10,6 +10,25 @@ import { Dayjs } from 'dayjs';
 import React from 'react';
 import { ColorResult } from 'react-color';
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 1,
+  },
+  topRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 1,
+  },
+  datePicker: {
+    width: '175px',
+  },
+  timePicker: {
+    width: '100px',
+  },
+};
+
 export type EventEditorUIProps = {
   onEventAdd: () => void;
   eventTitle: string;
@@ -47,28 +66,45 @@ export const EventEditorUI = ({
   onEventEdit,
   onExitEditMode,
 }: EventEditorUIProps) => {
-  const datePickerStyle = {
-    width: '175px',
+  const buttonGroup = {
+    add: (
+      <IconButton
+        sx={{
+          marginTop: 1.5,
+        }}
+        onClick={onEventAdd}
+        aria-label='add event'
+      >
+        <AddIcon />
+      </IconButton>
+    ),
+    edit: (
+      <>
+        <IconButton
+          sx={{
+            marginTop: 1.5,
+          }}
+          onClick={onEventEdit}
+          aria-label='edit event'
+        >
+          <EditIcon />
+        </IconButton>
+        <IconButton
+          sx={{
+            marginTop: 1.5,
+          }}
+          onClick={onExitEditMode}
+          aria-label='exit editing mode'
+        >
+          <CloseIcon />
+        </IconButton>
+      </>
+    ),
   };
 
-  const timePickerStyle = {
-    width: '100px',
-  };
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 1,
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 1,
-        }}
-      >
+    <Box sx={styles.container}>
+      <Box sx={styles.topRow}>
         <TextField
           sx={{
             width: '200px',
@@ -79,39 +115,7 @@ export const EventEditorUI = ({
           value={eventTitle}
           onChange={onEventTitleChange}
         />
-        {/* ADD OR EDIT BUTTON */}
-        {selectedEventId ? (
-          <>
-            <IconButton
-              sx={{
-                marginTop: 1.5,
-              }}
-              onClick={onEventEdit}
-              aria-label='edit event'
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton
-              sx={{
-                marginTop: 1.5,
-              }}
-              onClick={onExitEditMode}
-              aria-label='exit editing mode'
-            >
-              <CloseIcon />
-            </IconButton>
-          </>
-        ) : (
-          <IconButton
-            sx={{
-              marginTop: 1.5,
-            }}
-            onClick={onEventAdd}
-            aria-label='add event'
-          >
-            <AddIcon />
-          </IconButton>
-        )}
+        {selectedEventId ? buttonGroup.edit : buttonGroup.add}
       </Box>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
         {/* FROM DATE PICKER */}
@@ -122,13 +126,13 @@ export const EventEditorUI = ({
           }}
         >
           <DatePicker
-            sx={datePickerStyle}
+            sx={styles.datePicker}
             label='From'
             value={eventFromDateDayjs}
             onChange={onEventFromChange}
           />
           <TimePicker
-            sx={timePickerStyle}
+            sx={styles.timePicker}
             value={eventFromTimeDayjs}
             onChange={onEventFromTimeChange}
           />
@@ -142,13 +146,13 @@ export const EventEditorUI = ({
           }}
         >
           <DatePicker
-            sx={datePickerStyle}
+            sx={styles.datePicker}
             label='To'
             value={eventToDateDayjs}
             onChange={onEventToChange}
           />
           <TimePicker
-            sx={timePickerStyle}
+            sx={styles.timePicker}
             value={eventToTimeDayjs}
             onChange={onEventToTimeChange}
           />

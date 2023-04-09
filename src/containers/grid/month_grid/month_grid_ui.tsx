@@ -2,21 +2,23 @@ import { Box } from '@mui/material';
 import { ReactNode } from 'react';
 import { MonthGridHeader } from './month_grid_header/month_grid_header';
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    minHeight: '0',
+    minWidth: '0',
+  },
+};
+
 export type MonthGridUIProps = {
   gridCells: ReactNode[];
   numberOfWeeks: number;
 };
 
 export const MonthGridUI = ({ gridCells, numberOfWeeks }: MonthGridUIProps) => (
-  <Box
-    sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      minHeight: '0',
-      minWidth: '0',
-    }}
-  >
+  <Box sx={styles.container}>
     <MonthGridHeader />
 
     <Box

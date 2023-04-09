@@ -18,40 +18,39 @@ export const LegendEventUI = ({
   color,
   onDelete,
   onClick,
-}: LegendEventUIProps) => (
-  <Box
-    sx={{
+}: LegendEventUIProps) => {
+  const styles = {
+    container: {
       display: 'grid',
       gridTemplateColumns: '1fr 2fr 1fr',
       gap: 2,
       borderLeft: 5,
       borderColor: color,
       padding: 1,
-    }}
-    onClick={onClick}
-  >
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      <Box>{from}</Box>
-      <Box>{to}</Box>
+    },
+    time: {
+      display: 'flex',
+      flexDirection: 'column',
+      whiteSpace: 'nowrap',
+    },
+    title: {
+      overflowWrap: 'break-word',
+      minWidth: 0,
+    },
+  };
+
+  return (
+    <Box sx={styles.container} onClick={onClick}>
+      <Box sx={styles.time}>
+        <Box>{from}</Box>
+        <Box>{to}</Box>
+      </Box>
+      <Box sx={styles.title}>{title}</Box>
+      <Box>
+        <IconButton onClick={onDelete} aria-label='delete'>
+          <DeleteIcon />
+        </IconButton>
+      </Box>
     </Box>
-    <Box
-      sx={{
-        overflowWrap: 'break-word',
-        minWidth: 0,
-      }}
-    >
-      {title}
-    </Box>
-    <Box>
-      <IconButton onClick={onDelete} aria-label='delete'>
-        <DeleteIcon />
-      </IconButton>
-    </Box>
-  </Box>
-);
+  );
+};
