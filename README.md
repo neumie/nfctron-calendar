@@ -84,7 +84,28 @@ live demo: <a href="https://neumie-calendar.netlify.app/" target="_blank">link</
 <!-- FEATURES -->
 ## Features
 
-WIP
+* fine tuned for desktops, but still usable on smaller devices
+* events are also stored in localStorage
+
+### Header
+* "Today" button, which scrolls to current day
+* year/month selector with two arrows which shift the month forwards/backwards (monthly view)
+* day selector (weekly view)
+* view selector that allows you to switch from/to weekly/monthly view
+
+### Legend
+* displays current selected date
+* event editor which allows you to add/edit events
+* event list that shows you 0 - n events for the selected day (becomes scrollable on overflow)
+* event list also allows you to start editing events by clicking them (they get transferred to the event editor), or to delete events by clicking on the trash can icon
+
+### Grid
+* weekly and monthy calendar view
+* highlighted current day (if shown) with a bar on top of the cell
+* highlighted selected day
+* show's up to n events for each day (depends on the height of the device)
+* if event spans for multiple days, then each day cell shows the event
+* select a day by clicking on the grid (more information about the day shows on the legend)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
