@@ -39,7 +39,7 @@
 
 This is a 7-day pre-employment assessment test project from NFCtron
 
-live demo: WIP
+live demo: https://neumie-calendar.netlify.app/
 
 <!-- SPECIFICATIONS -->
 ## Specifications
