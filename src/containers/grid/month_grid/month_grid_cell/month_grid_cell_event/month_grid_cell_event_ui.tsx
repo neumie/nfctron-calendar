@@ -1,18 +1,18 @@
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
 export type MonthGridCellEventUIProps = {
   title: string;
   color: string;
 };
 
-export const MonthGridCellEventUI = ({
-  title,
-  color,
-}: MonthGridCellEventUIProps) => {
+export const MonthGridCellEventUI = ({ title, color }: MonthGridCellEventUIProps) => {
   return (
     <Box
       sx={{
         backgroundColor: color,
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
       }}
     >
       {title}

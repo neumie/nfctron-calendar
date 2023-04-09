@@ -1,4 +1,3 @@
-import { useMonthGridCellEvent } from './month_grid_cell_event_hook';
 import { MonthGridCellEventUI } from './month_grid_cell_event_ui';
 
 export type MonthGridCellEventProps = {
@@ -7,7 +6,5 @@ export type MonthGridCellEventProps = {
 };
 
 export const MonthGridCellEvent = ({ title, color }: MonthGridCellEventProps) => {
-  const { shortenedTitle } = useMonthGridCellEvent(title);
-
-  return <MonthGridCellEventUI title={shortenedTitle} color={color} />;
+  return <MonthGridCellEventUI title={title} color={color} />;
 };
