@@ -8,7 +8,7 @@ const styles = {
     height: '100%',
     display: 'grid',
     gridTemplateColumns: '50px 1fr',
-    gridTemplateRows: '50px 1fr',
+    gridTemplateRows: '30px 1fr',
   },
   time: {
     gridRow: '2 / -1',

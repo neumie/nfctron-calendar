@@ -4,7 +4,7 @@ import React from 'react';
 const styles = {
   container: {
     width: '100%',
-    height: '50px',
+    height: '30px',
     display: 'grid',
     gridTemplateColumns: '50px repeat(7, minmax(0, 1fr))',
     gridTemplateRows: '1fr',
