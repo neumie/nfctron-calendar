@@ -1,9 +1,9 @@
 import { useLegendEvent } from './legend_event_hook';
 import { LegendEventUI } from './legend_event_ui';
-import { Event } from '../../../../utils/utils';
+import { Occasion } from '../../../../utils/utils';
 
 export type LegendEventProps = {
-  event: Event;
+  event: Occasion;
 };
 
 export const LegendEvent = ({ event }: LegendEventProps) => {

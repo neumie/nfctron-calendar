@@ -18,7 +18,7 @@ export enum GridViews {
   WEEK = "WEEK",
 }
 
-export type Event = {
+export type Occasion = {
   id: string;
   title: string;
   from: Date;
@@ -28,17 +28,16 @@ export type Event = {
 
 
 /**
- * Filters events array and returns events that happen on supplied date.
+ * Filters occasions array and returns occasions that happen on supplied date.
  * 
  * @param events
  * @param date 
- * @returns events that happen on supplied date.
+ * @returns occasions that happen on supplied date.
  */
-export const filterEventsByDate = (events: Event[], date: Date): Event[] => {
-  const found = events.filter((event) => {
+export const filterEventsByDate = (events: Occasion[], date: Date): Occasion[] => {
+  return events.filter((event) => {
     const from = new Date(event.from);
     const to = new Date(event.to);
     return isDateInRange(date, from, to);
   });
-  return found;
 };

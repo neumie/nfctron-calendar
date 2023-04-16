@@ -1,11 +1,11 @@
 import { datesAreSameDay } from '../../../../utils/date';
-import { filterEventsByDate, Event } from '../../../../utils/utils';
+import { filterEventsByDate, Occasion } from '../../../../utils/utils';
 import { useTheme } from '@mui/material/styles';
 import { useCalendarContext } from '../../../calendar/calendar_context';
 import { WeekGridCellEvent } from './week_grid_cell_event/week_grid_cell_event';
 
 export const useWeekGridCell = (date: Date) => {
-  const { setCalendarState, activeDate, events } = useCalendarContext();
+  const { setCalendarState, activeDate, occasions } = useCalendarContext();
   const theme = useTheme();
 
   const selected: boolean = datesAreSameDay(date, activeDate);
@@ -17,7 +17,7 @@ export const useWeekGridCell = (date: Date) => {
     }
   };
 
-  const filteredEvents: Event[] = filterEventsByDate(events, date);
+  const filteredEvents: Occasion[] = filterEventsByDate(occasions, date);
   const eventElements = filteredEvents.map(({ id, title, color, from, to }) => {
     return (
       <WeekGridCellEvent key={id} title={title} color={color} date={date} from={from} to={to} />
