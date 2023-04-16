@@ -1,16 +1,16 @@
-import { useCalendarContext } from './../../containers/calendar/calendar_context';
+import { useCalendarContext } from '../../containers/calendar/calendar_context';
 import { Dayjs, isDayjs } from 'dayjs';
 import React, { useEffect, useState } from 'react';
-import { Event } from './../../utils/utils';
+import { Occasion } from '../../utils/utils';
 import { combineDates } from '../../utils/date';
 import dayjs from 'dayjs';
 
-const transformDayjs = <T extends keyof EventState>(value: EventState[T] | Dayjs | null) => {
+const transformDayjs = <T extends keyof occasionState>(value: occasionState[T] | Dayjs | null) => {
   if (isDayjs(value)) return value.toDate();
   return value;
 };
 
-export type EventState = {
+export type occasionState = {
   title: string;
   fromDate: Date;
   fromTime: Date;
@@ -20,9 +20,9 @@ export type EventState = {
 };
 
 export const useEventEditor = () => {
-  const { setCalendarState, activeDate, events, eventEditorLock, selectedEventId } =
+  const { setCalendarState, activeDate, occasions, occasionEditorLock, selectedOccasionId } =
     useCalendarContext();
-  const [eventState, setEventState] = useState({
+  const [eventState, setOccasionState] = useState({
     title: '',
     fromDate: activeDate,
     fromTime: activeDate,
@@ -31,12 +31,12 @@ export const useEventEditor = () => {
     color: '#0693E3',
   });
 
-  const eventFromDateDayjs = dayjs(eventState.fromDate);
-  const eventFromTimeDayjs = dayjs(eventState.fromTime);
-  const eventToDateDayjs = dayjs(eventState.toDate);
-  const eventToTimeDayjs = dayjs(eventState.toTime);
+  const occasionFromDateDayjs = dayjs(eventState.fromDate);
+  const occasionFromTimeDayjs = dayjs(eventState.fromTime);
+  const occasionToDateDayjs = dayjs(eventState.toDate);
+  const occasionToTimeDayjs = dayjs(eventState.toTime);
 
-  const makeEventObject = (): Event => {
+  const makeEventObject = (): Occasion => {
     const eventFrom = combineDates(eventState.fromDate, eventState.fromTime);
     const eventTo = combineDates(eventState.toDate, eventState.toTime);
     return {
@@ -50,15 +50,15 @@ export const useEventEditor = () => {
 
   const handleEventAdd = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const newEvent = makeEventObject();
-    setCalendarState({ events: [...events, newEvent] });
+    const newOccasion = makeEventObject();
+    setCalendarState({ occasions: [...occasions, newOccasion] });
     resetEditor();
   };
 
-  const handleEventEdit = (e: React.MouseEvent<HTMLElement>) => {
+  const handleOccasionEdit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const editedEvents = events.map((event): Event => {
-      if (selectedEventId !== event.id) return event;
+    const editedEvents = occasions.map((event): Occasion => {
+      if (selectedOccasionId !== event.id) return event;
       const eventFrom = combineDates(eventState.fromDate, eventState.fromTime);
       const eventTo = combineDates(eventState.toDate, eventState.toTime);
       return {
@@ -69,18 +69,18 @@ export const useEventEditor = () => {
         color: eventState.color,
       };
     });
-    setCalendarState({ events: editedEvents });
+    setCalendarState({ occasions: editedEvents });
     resetEditor();
   };
 
   const findEvent = () => {
-    return events.find((event) => event.id === selectedEventId);
+    return occasions.find((occasion) => occasion.id === selectedOccasionId);
   };
 
   const resetEditor = () => {
     const currentTime = new Date();
-    setCalendarState({ selectedEventId: '', eventEditorLock: false });
-    setEventState({
+    setCalendarState({ selectedOccasionId: '', occasionEditorLock: false });
+    setOccasionState({
       title: '',
       fromDate: activeDate,
       fromTime: currentTime,
@@ -90,30 +90,30 @@ export const useEventEditor = () => {
     });
   };
 
-  const handleFormStateChange = <T extends keyof EventState>(
+  const handleFormStateChange = <T extends keyof occasionState>(
     field: T,
-    value: EventState[T] | Dayjs | null,
+    value: occasionState[T] | Dayjs | null,
     shouldLock?: boolean,
   ) => {
     const transformedValue = transformDayjs(value);
-    shouldLock && setCalendarState({ eventEditorLock: true });
-    setEventState((prev) => ({ ...prev, [field]: transformedValue }));
+    shouldLock && setCalendarState({ occasionEditorLock: true });
+    setOccasionState((prev) => ({ ...prev, [field]: transformedValue }));
   };
 
   const handleEditorReset = () => resetEditor();
 
   useEffect(() => {
-    if (eventEditorLock) return;
+    if (occasionEditorLock) return;
 
     const newEventDate = new Date(activeDate.getTime());
-    setEventState((prev) => ({ ...prev, fromDate: newEventDate, toDate: newEventDate }));
+    setOccasionState((prev) => ({ ...prev, fromDate: newEventDate, toDate: newEventDate }));
   }, [activeDate]);
 
   useEffect(() => {
     const event = findEvent();
     if (!event) return;
 
-    setEventState({
+    setOccasionState({
       title: event.title,
       fromDate: event.from,
       fromTime: event.from,
@@ -121,21 +121,21 @@ export const useEventEditor = () => {
       toTime: event.to,
       color: event.color,
     });
-  }, [selectedEventId]);
+  }, [selectedOccasionId]);
 
-  const eventTitle = eventState.title;
-  const eventColor = eventState.color;
+  const occasionTitle = eventState.title;
+  const occasionColor = eventState.color;
 
   return {
-    selectedEventId,
+    selectedOccasionId: selectedOccasionId,
     handleEventAdd,
-    eventTitle,
-    eventFromDateDayjs,
-    eventFromTimeDayjs,
-    eventToDateDayjs,
-    eventToTimeDayjs,
-    eventColor,
-    handleEventEdit,
+    occasionTitle,
+    occasionFromDateDayjs,
+    occasionFromTimeDayjs,
+    occasionToDateDayjs,
+    occasionToTimeDayjs,
+    occasionColor,
+    handleOccasionEdit,
     handleEditorReset,
     handleFormStateChange,
   };

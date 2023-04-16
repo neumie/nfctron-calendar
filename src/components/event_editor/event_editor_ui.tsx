@@ -7,7 +7,7 @@ import 'dayjs/locale/en-gb';
 import { TwitterPicker as ColorPicker } from 'react-color';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Dayjs } from 'dayjs';
-import { EventState } from './event_editor_hook';
+import { occasionState } from './event_editor_hook';
 
 const styles = {
   container: {
@@ -42,9 +42,9 @@ export type EventEditorUIProps = {
   selectedEventId: string;
   onEventEdit: (e: React.MouseEvent<HTMLElement>) => void;
   onResetEditor: () => void;
-  onFormStateChange: <T extends keyof EventState>(
+  onFormStateChange: <T extends keyof occasionState>(
     field: T,
-    value: EventState[T] | Dayjs | null,
+    value: occasionState[T] | Dayjs | null,
     shouldLock?: boolean,
   ) => void;
 };

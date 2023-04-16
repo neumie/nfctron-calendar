@@ -1,11 +1,11 @@
-import { filterEventsByDate, Event } from '../../../../utils/utils';
+import { filterEventsByDate, Occasion } from '../../../../utils/utils';
 import { datesAreSameDay } from '../../../../utils/date';
 import { useCalendarContext } from '../../../calendar/calendar_context';
 import { useTheme } from '@mui/material/styles';
 import { MonthGridCellEvent } from './month_grid_cell_event/month_grid_cell_event';
 
 export const useMonthGridCell = (date: Date) => {
-  const { setCalendarState, activeDate, events } = useCalendarContext();
+  const { setCalendarState, activeDate, occasions } = useCalendarContext();
   const theme = useTheme();
 
   const selected: boolean = datesAreSameDay(date, activeDate);
@@ -13,7 +13,7 @@ export const useMonthGridCell = (date: Date) => {
   const today: boolean = datesAreSameDay(date, new Date());
   const day: number = date.getDate();
 
-  const filteredEvents: Event[] = filterEventsByDate(events, date);
+  const filteredEvents: Occasion[] = filterEventsByDate(occasions, date);
   const eventElements = filteredEvents.map(({ id, title, color }) => {
     return <MonthGridCellEvent key={id} title={title} color={color} />;
   });

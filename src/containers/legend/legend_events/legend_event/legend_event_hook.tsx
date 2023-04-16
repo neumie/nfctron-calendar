@@ -1,5 +1,5 @@
 import { useCalendarContext } from './../../../calendar/calendar_context';
-import { Event } from '../../../../utils/utils';
+import { Occasion } from '../../../../utils/utils';
 import { convertDateToHoursMinutes } from '../../../../utils/date';
 
 const prependFrom = (activeDate: Date, from: Date, fromTimeString: string) => {
@@ -14,10 +14,10 @@ const prependTo = (activeDate: Date, to: Date, toTimeString: string) => {
   return `${toDay} ${toTimeString}`;
 };
 
-export const useLegendEvent = (event: Event) => {
-  const { setCalendarState, events, activeDate } = useCalendarContext();
+export const useLegendEvent = (occasion: Occasion) => {
+  const { setCalendarState, occasions, activeDate } = useCalendarContext();
 
-  const { id, from, to } = event;
+  const { id, from, to } = occasion;
 
   const fromTimeString = convertDateToHoursMinutes(from);
   const toTimeString = convertDateToHoursMinutes(to);
@@ -25,8 +25,8 @@ export const useLegendEvent = (event: Event) => {
   const toString = prependTo(activeDate, to, toTimeString);
 
   const removeEvent = () => {
-    const filteredEvents = events.filter((event) => event.id !== id);
-    setCalendarState({ events: filteredEvents });
+    const filteredEvents = occasions.filter((event) => event.id !== id);
+    setCalendarState({ occasions: filteredEvents });
   };
 
   const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
@@ -40,7 +40,7 @@ export const useLegendEvent = (event: Event) => {
 
   const loadEventToEditor = () => {
     setCalendarState({
-      selectedEventId: id,
+      selectedOccasionId: id,
     });
   };
 
