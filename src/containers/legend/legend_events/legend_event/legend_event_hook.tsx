@@ -1,4 +1,4 @@
-import { useCalendarContext } from './../../../calendar/calendar_context';
+import { useCalendarContext } from '../../../calendar/calendar_context';
 import { Occasion } from '../../../../utils/utils';
 import { convertDateToHoursMinutes } from '../../../../utils/date';
 

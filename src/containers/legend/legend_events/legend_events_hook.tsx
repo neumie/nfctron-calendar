@@ -1,4 +1,4 @@
-import { useCalendarContext } from './../../calendar/calendar_context';
+import { useCalendarContext } from '../../calendar/calendar_context';
 import { filterEventsByDate } from '../../../utils/utils';
 import { LegendEvent } from './legend_event/legend_event';
 

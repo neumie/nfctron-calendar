@@ -67,11 +67,9 @@ const getEventsFromStorage = (): Occasion[] => {
   if (!eventsPayload) return [];
 
   const storageEvents: Occasion[] = JSON.parse(eventsPayload);
-  const transformedStorageEvents = storageEvents.map((event) => {
+  return storageEvents.map((event) => {
     const from = new Date(event.from);
     const to = new Date(event.to);
     return { ...event, from, to };
   });
-
-  return transformedStorageEvents;
 };

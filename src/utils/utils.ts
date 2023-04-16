@@ -35,10 +35,9 @@ export type Occasion = {
  * @returns occasions that happen on supplied date.
  */
 export const filterEventsByDate = (events: Occasion[], date: Date): Occasion[] => {
-  const found = events.filter((event) => {
+  return events.filter((event) => {
     const from = new Date(event.from);
     const to = new Date(event.to);
     return isDateInRange(date, from, to);
   });
-  return found;
 };
